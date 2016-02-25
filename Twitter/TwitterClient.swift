@@ -14,6 +14,8 @@ private let CONSUMER_KEY = "tlQEQS7zcKp93aO8qfn3IOenH"
 private let CONSUMER_SECRET = "Hd5SmNqUmE09LnysMqoTWE2JMogm5yxYERBZGsA2Xbe4BDEwnJ"
 private let LOGOUT_EVENT = "UserDidLogout"
 
+
+
 class TwitterClient: BDBOAuth1SessionManager {
     
     static let sharedInstance = TwitterClient(

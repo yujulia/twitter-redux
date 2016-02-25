@@ -22,11 +22,6 @@
 		5A6C77031C7C24EB00CD8A5C /* TwitterClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6C77021C7C24EB00CD8A5C /* TwitterClient.swift */; };
 		5A6C77051C7C319E00CD8A5C /* TweetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6C77041C7C319E00CD8A5C /* TweetsViewController.swift */; };
 		5A6C77081C7C359400CD8A5C /* TweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6C77071C7C359400CD8A5C /* TweetCell.swift */; };
-		5ACE9C9B1C7FADBC00354795 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACE9C9A1C7FADBC00354795 /* ProfileViewController.swift */; };
-		5ACE9C9D1C7FADD100354795 /* MentionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACE9C9C1C7FADD100354795 /* MentionsViewController.swift */; };
-		5ACE9CA11C7FAF8200354795 /* HamburgerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACE9CA01C7FAF8200354795 /* HamburgerViewController.swift */; };
-		5ACE9CA31C7FAF8D00354795 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACE9CA21C7FAF8D00354795 /* MenuViewController.swift */; };
-		5ACE9CA51C7FB10D00354795 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACE9CA41C7FB10D00354795 /* MenuCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,7 +32,7 @@
 		5A4FE8DD1C7D54D500B4EDC8 /* TweetDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetDetailViewController.swift; sourceTree = "<group>"; };
 		5A4FE8DF1C7D78EE00B4EDC8 /* ComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
 		5A4FE8E11C7E25EA00B4EDC8 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
-		5A6C76C41C7B88D400CD8A5C /* Twitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5A6C76C41C7B88D400CD8A5C /* TwitterRedux.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwitterRedux.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A6C76C71C7B88D400CD8A5C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5A6C76CC1C7B88D400CD8A5C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5A6C76CE1C7B88D400CD8A5C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -49,11 +44,6 @@
 		5A6C77021C7C24EB00CD8A5C /* TwitterClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterClient.swift; sourceTree = "<group>"; };
 		5A6C77041C7C319E00CD8A5C /* TweetsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetsViewController.swift; sourceTree = "<group>"; };
 		5A6C77071C7C359400CD8A5C /* TweetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetCell.swift; sourceTree = "<group>"; };
-		5ACE9C9A1C7FADBC00354795 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		5ACE9C9C1C7FADD100354795 /* MentionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentionsViewController.swift; sourceTree = "<group>"; };
-		5ACE9CA01C7FAF8200354795 /* HamburgerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HamburgerViewController.swift; sourceTree = "<group>"; };
-		5ACE9CA21C7FAF8D00354795 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
-		5ACE9CA41C7FB10D00354795 /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,7 +87,7 @@
 		5A6C76C51C7B88D400CD8A5C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5A6C76C41C7B88D400CD8A5C /* Twitter.app */,
+				5A6C76C41C7B88D400CD8A5C /* TwitterRedux.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -126,10 +116,6 @@
 				5A6C77041C7C319E00CD8A5C /* TweetsViewController.swift */,
 				5A4FE8DD1C7D54D500B4EDC8 /* TweetDetailViewController.swift */,
 				5A4FE8DF1C7D78EE00B4EDC8 /* ComposeViewController.swift */,
-				5ACE9C9A1C7FADBC00354795 /* ProfileViewController.swift */,
-				5ACE9C9C1C7FADD100354795 /* MentionsViewController.swift */,
-				5ACE9CA01C7FAF8200354795 /* HamburgerViewController.swift */,
-				5ACE9CA21C7FAF8D00354795 /* MenuViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -156,7 +142,6 @@
 			isa = PBXGroup;
 			children = (
 				5A6C77071C7C359400CD8A5C /* TweetCell.swift */,
-				5ACE9CA41C7FB10D00354795 /* MenuCell.swift */,
 			);
 			name = "Table Cells";
 			sourceTree = "<group>";
@@ -173,9 +158,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		5A6C76C31C7B88D400CD8A5C /* Twitter */ = {
+		5A6C76C31C7B88D400CD8A5C /* TwitterRedux */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5A6C76D61C7B88D400CD8A5C /* Build configuration list for PBXNativeTarget "Twitter" */;
+			buildConfigurationList = 5A6C76D61C7B88D400CD8A5C /* Build configuration list for PBXNativeTarget "TwitterRedux" */;
 			buildPhases = (
 				105F034A4D9F40203D126FD6 /* Check Pods Manifest.lock */,
 				5A6C76C01C7B88D400CD8A5C /* Sources */,
@@ -188,9 +173,9 @@
 			);
 			dependencies = (
 			);
-			name = Twitter;
+			name = TwitterRedux;
 			productName = Twitter;
-			productReference = 5A6C76C41C7B88D400CD8A5C /* Twitter.app */;
+			productReference = 5A6C76C41C7B88D400CD8A5C /* TwitterRedux.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -209,7 +194,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 5A6C76BF1C7B88D400CD8A5C /* Build configuration list for PBXProject "Twitter" */;
+			buildConfigurationList = 5A6C76BF1C7B88D400CD8A5C /* Build configuration list for PBXProject "TwitterRedux" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -222,7 +207,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5A6C76C31C7B88D400CD8A5C /* Twitter */,
+				5A6C76C31C7B88D400CD8A5C /* TwitterRedux */,
 			);
 		};
 /* End PBXProject section */
@@ -294,20 +279,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A6C77031C7C24EB00CD8A5C /* TwitterClient.swift in Sources */,
-				5ACE9CA31C7FAF8D00354795 /* MenuViewController.swift in Sources */,
 				5A6C77081C7C359400CD8A5C /* TweetCell.swift in Sources */,
 				5A4FE8DE1C7D54D500B4EDC8 /* TweetDetailViewController.swift in Sources */,
 				5A4FE8E21C7E25EA00B4EDC8 /* State.swift in Sources */,
 				5A6C76F81C7BE42900CD8A5C /* LoginViewController.swift in Sources */,
-				5ACE9C9D1C7FADD100354795 /* MentionsViewController.swift in Sources */,
-				5ACE9CA11C7FAF8200354795 /* HamburgerViewController.swift in Sources */,
 				5A6C77051C7C319E00CD8A5C /* TweetsViewController.swift in Sources */,
-				5ACE9C9B1C7FADBC00354795 /* ProfileViewController.swift in Sources */,
 				5A4FE8E01C7D78EE00B4EDC8 /* ComposeViewController.swift in Sources */,
 				5A6C76C81C7B88D400CD8A5C /* AppDelegate.swift in Sources */,
 				5A4FE8DC1C7D34E200B4EDC8 /* ImageLoader.swift in Sources */,
 				5A6C76FD1C7C098100CD8A5C /* User.swift in Sources */,
-				5ACE9CA51C7FB10D00354795 /* MenuCell.swift in Sources */,
 				5A6C76FF1C7C098D00CD8A5C /* Tweet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -422,8 +402,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Twitter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.juliayu.Twitter;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.juliayu.TwitterRedux;
+				PRODUCT_NAME = TwitterRedux;
 			};
 			name = Debug;
 		};
@@ -434,15 +414,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Twitter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.juliayu.Twitter;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.juliayu.TwitterRedux;
+				PRODUCT_NAME = TwitterRedux;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		5A6C76BF1C7B88D400CD8A5C /* Build configuration list for PBXProject "Twitter" */ = {
+		5A6C76BF1C7B88D400CD8A5C /* Build configuration list for PBXProject "TwitterRedux" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5A6C76D41C7B88D400CD8A5C /* Debug */,
@@ -451,7 +431,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5A6C76D61C7B88D400CD8A5C /* Build configuration list for PBXNativeTarget "Twitter" */ = {
+		5A6C76D61C7B88D400CD8A5C /* Build configuration list for PBXNativeTarget "TwitterRedux" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5A6C76D71C7B88D400CD8A5C /* Debug */,
