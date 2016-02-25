@@ -698,7 +698,7 @@
         <!--Profile-->
         <scene sceneID="u2a-zI-prf">
             <objects>
-                <viewController storyboardIdentifier="ProfileView" id="i2k-Tx-TEv" customClass="ProfileViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileViewController" id="i2k-Tx-TEv" customClass="ProfileViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bO9-xU-9W3"/>
                         <viewControllerLayoutGuide type="bottom" id="dq9-Vy-tGB"/>
@@ -725,7 +725,7 @@
         <!--Mentions-->
         <scene sceneID="lYA-vm-zs9">
             <objects>
-                <viewController storyboardIdentifier="MentionsView" id="aJ5-T2-zLa" customClass="MentionsViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MentionsViewController" id="aJ5-T2-zLa" customClass="MentionsViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wih-gC-Rnv"/>
                         <viewControllerLayoutGuide type="bottom" id="oRD-Dp-GJl"/>
@@ -775,7 +775,7 @@
         <!--Navigation Controller-->
         <scene sceneID="HAj-XH-lmH">
             <objects>
-                <navigationController storyboardIdentifier="ProfileNav" automaticallyAdjustsScrollViewInsets="NO" id="8vw-rN-Scx" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ProfileNavController" automaticallyAdjustsScrollViewInsets="NO" id="8vw-rN-Scx" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="tXL-UL-EOg">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -797,7 +797,7 @@
         <!--Navigation Controller-->
         <scene sceneID="aeE-gD-cL4">
             <objects>
-                <navigationController storyboardIdentifier="MentionsNav" automaticallyAdjustsScrollViewInsets="NO" id="RGL-3W-5NF" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MentionsNavController" automaticallyAdjustsScrollViewInsets="NO" id="RGL-3W-5NF" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cVR-u6-52a">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

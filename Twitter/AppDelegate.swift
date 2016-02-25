@@ -17,10 +17,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-            let hamburger = self.storyBoard.instantiateViewControllerWithIdentifier("HamburgerView") as! HamburgerViewController
-            let menu = self.storyBoard.instantiateViewControllerWithIdentifier("MenuView")
-            self.window?.rootViewController = hamburger
-            hamburger.menuViewController = menu
+            let hamburgerViewController = self.storyBoard.instantiateViewControllerWithIdentifier("HamburgerView") as! HamburgerViewController
+            let menuViewController = self.storyBoard.instantiateViewControllerWithIdentifier("MenuView") as! MenuViewController
+        
+            self.window?.rootViewController = hamburgerViewController
+            hamburgerViewController.menuViewController = menuViewController
+            menuViewController.hamburgerViewController = hamburgerViewController
         
 //        if State.currentUser != nil {
 //            let HomeNavController = self.storyBoard.instantiateViewControllerWithIdentifier("HomeNavController")

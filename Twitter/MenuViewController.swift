@@ -21,6 +21,7 @@ class MenuViewController: UIViewController, UITableViewDataSource {
     
     private var MenuTitles: [String] = ["Profile", "Home", "Mentions"]
     
+    var hamburgerViewController: HamburgerViewController!
     
     // --------------------------------------
     
@@ -35,8 +36,8 @@ class MenuViewController: UIViewController, UITableViewDataSource {
     private func getMenuViewControllers() {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         
-        self.ProfileNavController = storyBoard.instantiateViewControllerWithIdentifier("ProfileNav")
-        self.MentionsNavController = storyBoard.instantiateViewControllerWithIdentifier("MentionsNav")
+        self.ProfileNavController = storyBoard.instantiateViewControllerWithIdentifier("ProfileNavController")
+        self.MentionsNavController = storyBoard.instantiateViewControllerWithIdentifier("MentionsNavController")
         self.HomeNavController = storyBoard.instantiateViewControllerWithIdentifier("HomeNavController")
         
         MenuViewControllers.append(self.ProfileNavController)
@@ -72,6 +73,13 @@ extension MenuViewController: UITableViewDelegate {
         cell.menuLabel.text = self.MenuTitles[indexPath.row]
 
         return cell
+    }
+    
+    // --------------------------------------
+    
+    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        self.hamburgerViewController.contentViewController = self.MenuViewControllers[indexPath.row]
     }
     
 }
