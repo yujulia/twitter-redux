@@ -17,9 +17,20 @@ class HamburgerViewController: UIViewController {
     private var originalLead: CGFloat! = 0
     private var open: Bool = false
     
+    var menuViewController: UIViewController! {
+        didSet {
+            self.view.layoutIfNeeded()
+            self.menuView.addSubview(menuViewController.view)
+        }
+    }
+    
+    // --------------------------------------
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    // --------------------------------------
 
     @IBAction func onContentPan(sender: UIPanGestureRecognizer) {
         
@@ -43,7 +54,7 @@ class HamburgerViewController: UIViewController {
         } else if sender.state == UIGestureRecognizerState.Ended {
             
             UIView.animateWithDuration(
-                0.3,
+                0.1,
                 delay: 0,
                 options: UIViewAnimationOptions.CurveEaseInOut,
                 animations: { () -> Void in
@@ -57,12 +68,11 @@ class HamburgerViewController: UIViewController {
                         self.contentLead.constant = 0
                         self.open = false
                     }
+                    self.view.layoutIfNeeded()
                 },
                 completion: { (done: Bool) -> Void in
                     // animation done
             })
-            
-            
         }
         
     }
