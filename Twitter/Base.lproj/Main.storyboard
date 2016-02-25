@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="xLi-Vi-6Ry">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="t6p-tz-iOx">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -168,7 +168,7 @@
         <!--Timeline-->
         <scene sceneID="mAL-Dz-rIW">
             <objects>
-                <viewController id="oeW-SN-q3n" customClass="TweetsViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" id="oeW-SN-q3n" customClass="TweetsViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jvG-p9-HTS"/>
                         <viewControllerLayoutGuide type="bottom" id="BHG-3E-QoO"/>
@@ -655,17 +655,43 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="hamburger" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pyh-4S-NJG">
-                                <rect key="frame" x="59" y="292" width="84" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vl1-LU-UyI" userLabel="Menu">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" red="0.67843137249999996" green="0.023529411760000001" blue="0.015686274510000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S9J-Uz-QTn" userLabel="Content">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" red="0.1176470588" green="0.47058823529999999" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="iwi-7c-s0z" appends="YES" id="Lv7-uQ-NON"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="S9J-Uz-QTn" firstAttribute="top" secondItem="DfH-Bn-UH8" secondAttribute="top" id="FZh-HJ-MiJ"/>
+                            <constraint firstItem="KbC-7p-7u3" firstAttribute="top" secondItem="S9J-Uz-QTn" secondAttribute="bottom" id="GmT-5K-Tb2"/>
+                            <constraint firstAttribute="trailing" secondItem="vl1-LU-UyI" secondAttribute="trailing" id="Kom-MW-bia"/>
+                            <constraint firstItem="KbC-7p-7u3" firstAttribute="top" secondItem="vl1-LU-UyI" secondAttribute="bottom" id="Zfk-gW-0IS"/>
+                            <constraint firstItem="vl1-LU-UyI" firstAttribute="top" secondItem="DfH-Bn-UH8" secondAttribute="top" id="dFu-I4-Pog"/>
+                            <constraint firstItem="vl1-LU-UyI" firstAttribute="leading" secondItem="DfH-Bn-UH8" secondAttribute="leading" id="ire-yl-U1d"/>
+                            <constraint firstItem="S9J-Uz-QTn" firstAttribute="leading" secondItem="DfH-Bn-UH8" secondAttribute="leading" id="m7j-Hq-cUK"/>
+                            <constraint firstItem="S9J-Uz-QTn" firstAttribute="width" secondItem="DfH-Bn-UH8" secondAttribute="width" id="zMa-GP-HqC"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="contentLead" destination="m7j-Hq-cUK" id="knB-VY-Qmq"/>
+                        <outlet property="contentView" destination="S9J-Uz-QTn" id="PAF-AF-ETX"/>
+                        <outlet property="menuView" destination="vl1-LU-UyI" id="muk-Gk-DWW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bp8-8d-Cjk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="iwi-7c-s0z" userLabel="content pan gesture">
+                    <connections>
+                        <action selector="onContentPan:" destination="t6p-tz-iOx" id="bxd-cX-Lc0"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="124" y="-1597"/>
         </scene>
@@ -726,7 +752,7 @@
         <!--Navigation Controller-->
         <scene sceneID="NrT-Fo-kwY">
             <objects>
-                <navigationController storyboardIdentifier="TweetsNavController" automaticallyAdjustsScrollViewInsets="NO" id="FrN-RI-1R1" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="HomeNavController" automaticallyAdjustsScrollViewInsets="NO" id="FrN-RI-1R1" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="mVc-Sh-JfU">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -749,7 +775,7 @@
         <!--Navigation Controller-->
         <scene sceneID="HAj-XH-lmH">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8vw-rN-Scx" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ProfileNav" automaticallyAdjustsScrollViewInsets="NO" id="8vw-rN-Scx" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="tXL-UL-EOg">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -771,7 +797,7 @@
         <!--Navigation Controller-->
         <scene sceneID="aeE-gD-cL4">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="RGL-3W-5NF" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MentionsNav" automaticallyAdjustsScrollViewInsets="NO" id="RGL-3W-5NF" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cVR-u6-52a">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -808,7 +834,7 @@
         <image name="write" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ypb-gJ-NDf"/>
+        <segue reference="l3l-Zs-sYR"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>

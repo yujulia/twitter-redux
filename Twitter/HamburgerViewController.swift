@@ -9,27 +9,32 @@
 import UIKit
 
 class HamburgerViewController: UIViewController {
-
+    
+    @IBOutlet weak var contentLead: NSLayoutConstraint!
+    @IBOutlet weak var menuView: UIView!
+    @IBOutlet weak var contentView: UIView!
+    
+    private var originalLead: CGFloat! = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func onContentPan(sender: UIPanGestureRecognizer) {
+        
+        let translation = sender.translationInView(self.view)
+        let velocity = sender.velocityInView(self.view)
+        
+        if sender.state == UIGestureRecognizerState.Began {
+            self.originalLead = self.contentLead.constant
+        } else if sender.state == UIGestureRecognizerState.Changed {
+            self.contentLead.constant = self.originalLead + translation.x
+        } else if sender.state == UIGestureRecognizerState.Ended {
+            
+        }
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

@@ -18,8 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
 //        if State.currentUser != nil {
-//            let TweetsNavController = self.storyBoard.instantiateViewControllerWithIdentifier("TweetsNavController")
-//            self.window?.rootViewController = TweetsNavController
+//            let HomeNavController = self.storyBoard.instantiateViewControllerWithIdentifier("HomeNavController")
+//            self.window?.rootViewController = HomeNavController
 //        }
 //        
 //        NSNotificationCenter.defaultCenter().addObserverForName("UserDidLogout", object: nil, queue: NSOperationQueue.mainQueue()) { (note: NSNotification) -> Void in

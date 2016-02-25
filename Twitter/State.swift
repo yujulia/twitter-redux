@@ -17,12 +17,7 @@ class State: NSObject {
     static var homeTweets: [Tweet]?
     static var lastBatchCount: Int = 0
     static var currentHomeTweetCount: Int = 0
-    
-    static var menuItems: [Int: String]? = [
-        0: "menu 1",
-        1: "menu 2",
-        3: "menu 3"
-    ]
+
     
     // -------------------------------------- get and set currentUser of the app
     

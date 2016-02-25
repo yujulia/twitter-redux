@@ -9,15 +9,40 @@
 import UIKit
 
 class MenuViewController: UIViewController, UITableViewDataSource {
-    
-    let ESTIMATE_ROW_HEIGHT: CGFloat = 120.0
 
     @IBOutlet weak var tableView: UITableView!
     
+    let ESTIMATE_ROW_HEIGHT: CGFloat = 120.0
+    
+    private var MenuViewControllers: [UIViewController] = []
+    private var ProfileNavController: UIViewController!
+    private var MentionsNavController: UIViewController!
+    private var HomeNavController: UIViewController!
+    
+    private var MenuTitles: [String] = ["Profile", "Home", "Mentions"]
+    
+    
+    // --------------------------------------
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.getMenuViewControllers()
         self.setupTable()
-
+    }
+    
+    // -------------------------------------- get vc from storyboard and instantiate
+    
+    private func getMenuViewControllers() {
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        
+        self.ProfileNavController = storyBoard.instantiateViewControllerWithIdentifier("ProfileNav")
+        self.MentionsNavController = storyBoard.instantiateViewControllerWithIdentifier("MentionsNav")
+        self.HomeNavController = storyBoard.instantiateViewControllerWithIdentifier("HomeNavController")
+        
+        MenuViewControllers.append(self.ProfileNavController)
+        MenuViewControllers.append(self.HomeNavController)
+        MenuViewControllers.append(self.MentionsNavController)
+        
     }
 
 }
@@ -35,12 +60,7 @@ extension MenuViewController: UITableViewDelegate {
     // --------------------------------------
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        if let items = State.menuItems {
-            return items.count
-        } else {
-            return 0
-        }
+        return MenuViewControllers.count
     }
     
     // --------------------------------------
@@ -49,7 +69,7 @@ extension MenuViewController: UITableViewDelegate {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("MenuCell", forIndexPath: indexPath) as! MenuCell
         
-        cell.menuLabel.text = String(indexPath.row)
+        cell.menuLabel.text = self.MenuTitles[indexPath.row]
 
         return cell
     }
