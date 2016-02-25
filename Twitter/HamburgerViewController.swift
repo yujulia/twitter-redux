@@ -15,11 +15,10 @@ class HamburgerViewController: UIViewController {
     @IBOutlet weak var contentView: UIView!
     
     private var originalLead: CGFloat! = 0
+    private var open: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-
     }
 
     @IBAction func onContentPan(sender: UIPanGestureRecognizer) {
@@ -30,8 +29,39 @@ class HamburgerViewController: UIViewController {
         if sender.state == UIGestureRecognizerState.Began {
             self.originalLead = self.contentLead.constant
         } else if sender.state == UIGestureRecognizerState.Changed {
-            self.contentLead.constant = self.originalLead + translation.x
+            
+            if self.open {
+                if (velocity.x <= 0) {
+                    self.contentLead.constant = self.originalLead + translation.x
+                }
+            } else {
+                if (velocity.x > 0) {
+                    self.contentLead.constant = self.originalLead + translation.x
+                }
+            }
+        
         } else if sender.state == UIGestureRecognizerState.Ended {
+            
+            UIView.animateWithDuration(
+                0.3,
+                delay: 0,
+                options: UIViewAnimationOptions.CurveEaseInOut,
+                animations: { () -> Void in
+                    // open
+                    if velocity.x > 0 {
+                        self.contentLead.constant = self.view.frame.size.width - 50
+                        self.open = true
+                        
+                        // close
+                    } else {
+                        self.contentLead.constant = 0
+                        self.open = false
+                    }
+                },
+                completion: { (done: Bool) -> Void in
+                    // animation done
+            })
+            
             
         }
         
