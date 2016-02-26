@@ -53,8 +53,8 @@ class MenuViewController: UIViewController, UITableViewDataSource {
         
         if let user = State.currentUser {
             
-            if let name = user.name as? String {
-                self.profileName.text = name
+            if let name = user.screenName as? String {
+                self.profileName.text = "@" + name
             }
             
             if let userImage = user.profileImageURL {

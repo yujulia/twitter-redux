@@ -600,7 +600,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="93" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="J1o-Me-A6n">
                                 <rect key="frame" x="0.0" y="65" width="320" height="503"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.83921568629999999" green="0.91764705879999997" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="separatorColor" red="0.050980392159999999" green="0.42352941179999998" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
@@ -622,12 +622,12 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Menu Item" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hSD-6x-rk7">
                                                     <rect key="frame" x="60" y="16" width="240" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" red="0.1647058824" green="0.74117647060000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.050980392159999999" green="0.42352941179999998" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cBF-t9-6sD" userLabel="divider">
                                                     <rect key="frame" x="0.0" y="50" width="320" height="1"/>
-                                                    <color key="backgroundColor" red="0.93413628110000002" green="0.93293917179999997" blue="0.95384968889999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="0.70588235290000001" green="0.83921568629999999" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="1" id="nU1-o9-lw1"/>
                                                     </constraints>
@@ -645,6 +645,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="hSD-6x-rk7" secondAttribute="trailing" constant="20" id="v9g-Un-qmK"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.83921568629999999" green="0.91764705879999997" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="menuIcon" destination="IPh-4d-CVG" id="GJi-TU-2In"/>
                                             <outlet property="menuLabel" destination="hSD-6x-rk7" id="avs-O3-46y"/>
@@ -660,8 +661,8 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xPX-qs-GgU">
-                                <rect key="frame" x="60" y="34" width="37.5" height="18"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <rect key="frame" x="60" y="35" width="33" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
