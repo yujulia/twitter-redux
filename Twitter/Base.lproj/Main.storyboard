@@ -349,11 +349,10 @@
                         <barButtonItem title="Item" id="b35-Ta-hV7"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Timeline" id="xcy-ts-YhT">
-                        <leftBarButtonItems>
-                            <barButtonItem image="hamburger" id="WgX-ng-s3s">
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <rightBarButtonItems>
+                            <barButtonItem image="quill" id="hjR-TF-3Ad">
                                 <connections>
-                                    <action selector="toggleHamburger:" destination="oeW-SN-q3n" id="H4E-xc-cTc"/>
+                                    <segue destination="Y70-oQ-fN0" kind="modal" identifier="ComposeSegue" id="l3l-Zs-sYR"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem image="minus-person" id="1hJ-bw-ZS6">
@@ -362,12 +361,7 @@
                                     <action selector="logoutTapped:" destination="oeW-SN-q3n" id="EWt-Eh-msd"/>
                                 </connections>
                             </barButtonItem>
-                        </leftBarButtonItems>
-                        <barButtonItem key="rightBarButtonItem" image="quill" id="hjR-TF-3Ad">
-                            <connections>
-                                <segue destination="Y70-oQ-fN0" kind="modal" identifier="ComposeSegue" id="l3l-Zs-sYR"/>
-                            </connections>
-                        </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -976,7 +970,6 @@
         <!--Navigation Controller-->
         <scene sceneID="HAj-XH-lmH">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="F0K-38-F4Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="ProfileNavController" automaticallyAdjustsScrollViewInsets="NO" id="8vw-rN-Scx" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="7C1-hG-Gq0"/>
@@ -993,6 +986,7 @@
                         <segue destination="i2k-Tx-TEv" kind="relationship" relationship="rootViewController" id="qXt-uh-RGA"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="F0K-38-F4Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="949" y="-437"/>
         </scene>
@@ -1032,8 +1026,8 @@
         <image name="write" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="cXc-6p-SZJ"/>
-        <segue reference="fpy-XE-hAU"/>
+        <segue reference="l3l-Zs-sYR"/>
+        <segue reference="e8l-8d-E4I"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>

@@ -19,7 +19,7 @@ class Tweet: NSObject {
     var profileImageURL: NSURL?
     var retweeted: Bool?
     var favorited: Bool?
-    var id: NSNumber?
+    var id: String?
     var user: User?
     
     // -------------------------------------- 
@@ -33,7 +33,8 @@ class Tweet: NSObject {
         self.screenName = tweetData.valueForKeyPath("user.screen_name") as? String
         self.retweeted = tweetData["retweeted"] as? Bool ?? false
         self.favorited = tweetData["favorited"] as? Bool ?? false
-        self.id = tweetData["id"] as? NSNumber ?? 0
+        
+        self.id = tweetData["id_str"] as? String
         
         if let timestampStr = tweetData["created_at"] as? String {
             let dateFormatter = NSDateFormatter()

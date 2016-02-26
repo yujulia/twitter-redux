@@ -185,7 +185,7 @@ class TweetDetailViewController: UIViewController {
         if self.retweeted {
             
             TwitterClient.sharedInstance.unRetweet(
-                Int(self.data!.id!),
+                self.data!.id!,
                 success: { (returnedTweet: Tweet) -> () in
                     print("un retweet returned", returnedTweet)
                     self.retweetButton.selected = false
@@ -197,7 +197,7 @@ class TweetDetailViewController: UIViewController {
         } else {
             
             TwitterClient.sharedInstance.retweet(
-                Int(self.data!.id!),
+                self.data!.id!,
                 success: { (returnedTweet: Tweet) -> () in
 
                     print("retweet returned", returnedTweet)
@@ -217,7 +217,7 @@ class TweetDetailViewController: UIViewController {
         if self.favorited {
             
             TwitterClient.sharedInstance.removeFavorite(
-                Int(self.data!.id!),
+                self.data!.id!,
                 success: { () -> () in
                     self.favoriteButton.selected = false
                     self.favorited = false
@@ -228,7 +228,7 @@ class TweetDetailViewController: UIViewController {
         } else {
             
             TwitterClient.sharedInstance.addFavorite(
-                Int(self.data!.id!),
+                self.data!.id!,
                 success: { () -> () in
                     self.favoriteButton.selected = true
                     self.favorited = true

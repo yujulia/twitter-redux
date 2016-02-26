@@ -33,7 +33,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource {
 
     // -------------------------------------- load the timeline
     
-    private func loadTimeline(last_id: Int?) {
+    private func loadTimeline(last_id: String?) {
 
         self.isLoading()
     
@@ -43,7 +43,10 @@ class TweetsViewController: UIViewController, UITableViewDataSource {
             self.endpoint,
             last_id: last_id,
             success: { () -> () in
+                
+                print("timeline got success")
                 if last_id != nil {
+
                     self.loadMoreDone()
                 } else {
                     self.loadDone()
@@ -61,14 +64,24 @@ class TweetsViewController: UIViewController, UITableViewDataSource {
     }
     
     private func loadDone() {
+        print("this is load done")
         self.notLoading()
         self.tableView.reloadData()
     }
     
     private func loadMoreDone() {
+        
+        print("load more done")
         self.notLoading()
+        
+        if State.lastBatchCount <= 0 {
+            print("Load more returned no more tweets")
+            return
+        }
+        
         let startRow = State.currentHomeTweetCount - State.lastBatchCount
         var addPaths = [NSIndexPath]()
+        
         for index in startRow...startRow + State.lastBatchCount - 1 {
             addPaths.append(NSIndexPath(forRow: index, inSection: 0))
         }
@@ -108,10 +121,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource {
     @IBAction func logoutTapped(sender: UIButton) {
         self.client.logout()
     }
-    
-    @IBAction func toggleHamburger(sender: UIBarButtonItem) {
-        NSNotificationCenter.defaultCenter().postNotificationName(HAMBURGER_TOGGLE_EVENT, object: nil)
-    }
+
     
     // -------------------------------------- update the title
     
@@ -196,7 +206,10 @@ extension TweetsViewController: UITableViewDelegate {
         
         if indexPath.row >= State.homeTweets!.count-1 {
             if let cellData = State.homeTweets?[indexPath.row] {
-                self.loadTimeline(Int(cellData.id!))
+                
+                print("LOAD MORE WITH", cellData.id)
+                
+                self.loadTimeline(cellData.id!)
             }
         }
     

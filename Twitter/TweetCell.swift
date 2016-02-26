@@ -157,7 +157,7 @@ class TweetCell: UITableViewCell {
         if self.retweeted {
             
             TwitterClient.sharedInstance.unRetweet(
-                Int(self.data!.id!),
+                self.data!.id!,
                 success: { (returnedTweet: Tweet) -> () in
                     print("un retweet returned", returnedTweet)
                     self.retweetButton.selected = false
@@ -166,7 +166,7 @@ class TweetCell: UITableViewCell {
             
         } else {
             TwitterClient.sharedInstance.retweet(
-                Int(self.data!.id!),
+                self.data!.id!,
                 success: { (returnedTweet: Tweet) -> () in
 
                     print("retweet returned", returnedTweet)
@@ -188,7 +188,7 @@ class TweetCell: UITableViewCell {
         if self.favorited {
             
             TwitterClient.sharedInstance.removeFavorite(
-                Int(self.data!.id!),
+                self.data!.id!,
                 success: { () -> () in
                     print("yeah removed favorited")
                     self.favoriteButton.selected = false
@@ -199,7 +199,7 @@ class TweetCell: UITableViewCell {
         } else {
             
             TwitterClient.sharedInstance.addFavorite(
-                Int(self.data!.id!),
+                self.data!.id!,
                 success: { () -> () in
                     print("yeah favorited")
                     self.favoriteButton.selected = true

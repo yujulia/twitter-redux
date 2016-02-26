@@ -133,7 +133,7 @@ class TwitterClient: BDBOAuth1SessionManager {
     
     // ----------------------------------------- timeline
     
-    func loadTimelineOfType(timeline: Timelines, last_id: Int?, success: () -> (), failure: (NSError) -> ()) {
+    func loadTimelineOfType(timeline: Timelines, last_id: String?, success: () -> (), failure: (NSError) -> ()) {
         
         // default to home timline
         var endpoint = ENDPOINT_HOME_TIMELINE
@@ -142,17 +142,19 @@ class TwitterClient: BDBOAuth1SessionManager {
         }
         
         // set params if any
-        var params: [String: Int]?
+        var params: [String: String]?
         if let id = last_id {
-            let nextMax = id - 1
-            params = ["max_id": nextMax]
+            params = ["max_id": id]
         }
+        
+        print("GET TIMELINE WITH params: ", params, "lastid: ", last_id, "endpoint", endpoint)
 
         self.GET(
             endpoint,
             parameters: params,
             progress: nil,
             success: { (task: NSURLSessionDataTask, response: AnyObject?) -> Void in
+                print("GET returned ")
                 if let allTweets = response as? [NSDictionary] {
                     let tweets = Tweet.tweetsWithArray(allTweets)
                     State.lastBatchCount = tweets.count
@@ -164,9 +166,11 @@ class TwitterClient: BDBOAuth1SessionManager {
                     }
                     
                     State.currentHomeTweetCount = State.homeTweets?.count ?? 0
+                    
                     success()
                 }
             }) { (task: NSURLSessionDataTask?, error: NSError) -> Void in
+                print("GET failed ", error)
                 failure(error)
         }
     }
@@ -208,7 +212,7 @@ class TwitterClient: BDBOAuth1SessionManager {
     
     // ----------------------------------------- favorite / remove favorite
     
-    func addFavorite(fave_id: Int, success: ()->()) {
+    func addFavorite(fave_id: String, success: ()->()) {
         let endpoint = "/1.1/favorites/create.json"
         
         let faveParams = ["id": fave_id]
@@ -226,7 +230,7 @@ class TwitterClient: BDBOAuth1SessionManager {
         }
     }
     
-    func removeFavorite(fave_id: Int, success: ()->()) {
+    func removeFavorite(fave_id: String, success: ()->()) {
         let endpoint = "/1.1/favorites/destroy.json"
         
         let faveParams = ["id": fave_id]
@@ -244,7 +248,7 @@ class TwitterClient: BDBOAuth1SessionManager {
     
     // ----------------------------------------- retweet / unretweet
     
-    func retweet(retweet_id: Int, success: (Tweet)->()) {
+    func retweet(retweet_id: String, success: (Tweet)->()) {
         let endpoint = "/1.1/statuses/retweet/\(retweet_id).json"
         let retweetParams = ["id": retweet_id]
         
@@ -268,7 +272,7 @@ class TwitterClient: BDBOAuth1SessionManager {
         }
     }
     
-    func unRetweet(retweet_id: Int, success: (Tweet)->()) {
+    func unRetweet(retweet_id: String, success: (Tweet)->()) {
         let endpoint = "/1.1/statuses/unretweet/\(retweet_id).json"
         let retweetParams = ["id": retweet_id]
         
