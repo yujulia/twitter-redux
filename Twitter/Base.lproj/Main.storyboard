@@ -168,7 +168,7 @@
         <!--Timeline-->
         <scene sceneID="mAL-Dz-rIW">
             <objects>
-                <viewController storyboardIdentifier="HomeViewController" id="oeW-SN-q3n" customClass="TweetsViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TweetsViewController" id="oeW-SN-q3n" customClass="TweetsViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jvG-p9-HTS"/>
                         <viewControllerLayoutGuide type="bottom" id="BHG-3E-QoO"/>
@@ -752,7 +752,7 @@
         <!--Navigation Controller-->
         <scene sceneID="NrT-Fo-kwY">
             <objects>
-                <navigationController storyboardIdentifier="HomeNavController" automaticallyAdjustsScrollViewInsets="NO" id="FrN-RI-1R1" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="TweetsNavController" automaticallyAdjustsScrollViewInsets="NO" id="FrN-RI-1R1" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="mVc-Sh-JfU">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

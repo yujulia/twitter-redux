@@ -25,8 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             menuViewController.hamburgerViewController = hamburgerViewController
         
 //        if State.currentUser != nil {
-//            let HomeNavController = self.storyBoard.instantiateViewControllerWithIdentifier("HomeNavController")
-//            self.window?.rootViewController = HomeNavController
+//            let TweetsNavController = self.storyBoard.instantiateViewControllerWithIdentifier("TweetsNavController")
+//            self.window?.rootViewController = TweetsNavController
 //        }
 //        
 //        NSNotificationCenter.defaultCenter().addObserverForName("UserDidLogout", object: nil, queue: NSOperationQueue.mainQueue()) { (note: NSNotification) -> Void in

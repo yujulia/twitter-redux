@@ -17,7 +17,7 @@ class MenuViewController: UIViewController, UITableViewDataSource {
     private var MenuViewControllers: [UIViewController] = []
     private var ProfileNavController: UIViewController!
     private var MentionsNavController: UIViewController!
-    private var HomeNavController: UIViewController!
+    private var TweetsNavController: UIViewController!
     
     private var MenuTitles: [String] = ["Profile", "Home", "Mentions"]
     
@@ -38,10 +38,10 @@ class MenuViewController: UIViewController, UITableViewDataSource {
         
         self.ProfileNavController = storyBoard.instantiateViewControllerWithIdentifier("ProfileNavController")
         self.MentionsNavController = storyBoard.instantiateViewControllerWithIdentifier("MentionsNavController")
-        self.HomeNavController = storyBoard.instantiateViewControllerWithIdentifier("HomeNavController")
+        self.TweetsNavController = storyBoard.instantiateViewControllerWithIdentifier("TweetsNavController")
         
         MenuViewControllers.append(self.ProfileNavController)
-        MenuViewControllers.append(self.HomeNavController)
+        MenuViewControllers.append(self.TweetsNavController)
         MenuViewControllers.append(self.MentionsNavController)
         
     }
