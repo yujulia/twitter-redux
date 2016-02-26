@@ -74,7 +74,6 @@ class HamburgerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupMenu()
-        self.ObserveToggle()
     }
     
     // -------------------------------------- attach menu view controller to hamburger
@@ -84,19 +83,6 @@ class HamburgerViewController: UIViewController {
         let menuViewController = storyBoard.instantiateViewControllerWithIdentifier("MenuView") as! MenuViewController
         menuViewController.hamburgerViewController = self
         self.menuViewController = menuViewController
-    }
-    
-    // -------------------------------------- see if someone else wants to toggle open or closed
-    
-    private func ObserveToggle() {
-        NSNotificationCenter.defaultCenter().addObserverForName(HAMBURGER_TOGGLE_EVENT, object: nil, queue: NSOperationQueue.mainQueue()) { (note: NSNotification) -> Void in
-            
-            if self.open {
-                self.closeMenu()
-            } else {
-                self.openMenu()
-            }
-        }
     }
     
     // --------------------------------------

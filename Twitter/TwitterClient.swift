@@ -9,8 +9,6 @@
 import UIKit
 import BDBOAuth1Manager
 
-let HAMBURGER_TOGGLE_EVENT = "HamburgerDidToggle"
-let HAMBURGER_OPEN_EVENT = "HamburgerDidToggle"
 let LOGOUT_EVENT = "UserDidLogout"
 
 private let BASE_URL = "https://api.twitter.com"
@@ -156,7 +154,13 @@ class TwitterClient: BDBOAuth1SessionManager {
             success: { (task: NSURLSessionDataTask, response: AnyObject?) -> Void in
                 print("GET returned ")
                 if let allTweets = response as? [NSDictionary] {
-                    let tweets = Tweet.tweetsWithArray(allTweets)
+                    var tweets = Tweet.tweetsWithArray(allTweets)
+                    
+                    // pop off the top result if this is load more
+                    if State.currentHomeTweetCount > 0 {
+                        tweets.removeAtIndex(0)
+                    }
+                    
                     State.lastBatchCount = tweets.count
                     
                     if last_id != nil {

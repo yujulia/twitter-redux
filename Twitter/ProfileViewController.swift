@@ -113,9 +113,4 @@ class ProfileViewController: UIViewController {
             }
         }
     }
-
-
-    @IBAction func onHamburgerToggle(sender: AnyObject) {
-        NSNotificationCenter.defaultCenter().postNotificationName(HAMBURGER_TOGGLE_EVENT, object: nil)
-    }
 }

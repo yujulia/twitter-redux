@@ -924,9 +924,6 @@
                     <navigationItem key="navigationItem" title="Profile" id="lAA-Q5-ehs">
                         <barButtonItem key="leftBarButtonItem" image="hamburger" id="ufL-Jl-EYj">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="onHamburgerToggle:" destination="i2k-Tx-TEv" id="4Hj-kl-3Xi"/>
-                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
