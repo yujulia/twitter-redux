@@ -18,24 +18,29 @@ class HamburgerViewController: UIViewController {
     private var open: Bool = false
     
     var menuViewController: UIViewController! {
-        didSet(oldContentViewController) {
+        didSet(oldMenuViewController) {
+            
+            print("set menu", self.menuViewController)
             
             self.view.layoutIfNeeded()
             
-            if oldContentViewController != nil {
-                oldContentViewController.willMoveToParentViewController(nil)
-                oldContentViewController.view.removeFromSuperview()
-                oldContentViewController.didMoveToParentViewController(nil)
+            if oldMenuViewController != nil {
+                oldMenuViewController.willMoveToParentViewController(nil)
+                oldMenuViewController.view.removeFromSuperview()
+                oldMenuViewController.didMoveToParentViewController(nil)
             }
             
             self.menuViewController.willMoveToParentViewController(self)
             self.menuView.addSubview(menuViewController.view)
             self.menuViewController.didMoveToParentViewController(self)
+            self.view.layoutIfNeeded()
         }
     }
     
     var contentViewController: UIViewController! {
         didSet(oldContentViewController) {
+            
+            print("set content", self.contentViewController)
             
             self.view.layoutIfNeeded()
             
@@ -49,6 +54,7 @@ class HamburgerViewController: UIViewController {
             self.contentView.addSubview(self.contentViewController.view)
             self.contentViewController.didMoveToParentViewController(self)
             self.closeMenu()
+            self.view.layoutIfNeeded()
         }
     }
     
@@ -56,11 +62,21 @@ class HamburgerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        
+//        let hamburgerViewController = self.storyBoard.instantiateViewControllerWithIdentifier("HamburgerView") as! HamburgerViewController
+        let menuViewController = storyBoard.instantiateViewControllerWithIdentifier("MenuView") as! MenuViewController
+        
+        menuViewController.hamburgerViewController = self
+        self.menuViewController = menuViewController
+//        hamburgerViewController.menuViewController = menuViewController
     }
     
     // --------------------------------------
     
     private func closeMenu() {
+        print("close menu called")
         UIView.animateWithDuration(
             0.1,
             delay: 0,

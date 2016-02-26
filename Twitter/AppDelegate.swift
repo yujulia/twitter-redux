@@ -10,37 +10,66 @@ import UIKit
 import BDBOAuth1Manager
 
 @UIApplicationMain
+
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+    private let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+    
+    // --------------------------------------
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        print("app launch")
         
-            let hamburgerViewController = self.storyBoard.instantiateViewControllerWithIdentifier("HamburgerView") as! HamburgerViewController
-            let menuViewController = self.storyBoard.instantiateViewControllerWithIdentifier("MenuView") as! MenuViewController
-        
-            self.window?.rootViewController = hamburgerViewController
-        
-            menuViewController.hamburgerViewController = hamburgerViewController
-            hamburgerViewController.menuViewController = menuViewController
-        
-        
-//        if State.currentUser != nil {
-//            let TweetsNavController = self.storyBoard.instantiateViewControllerWithIdentifier("TweetsNavController")
-//            self.window?.rootViewController = TweetsNavController
-//        }
-//        
-//        NSNotificationCenter.defaultCenter().addObserverForName("UserDidLogout", object: nil, queue: NSOperationQueue.mainQueue()) { (note: NSNotification) -> Void in
-//                let LoginViewController = self.storyBoard.instantiateInitialViewController()
-//
-//            
-//            UIView.transitionWithView(self.window!, duration: 0.5, options: UIViewAnimationOptions.TransitionFlipFromLeft, animations: { () -> Void in
-//                self.window?.rootViewController = LoginViewController
-//                }, completion: nil)
-//        }
+        if State.currentUser != nil {
+            print("user already logged in")
+            self.setRootAsHamburger()
+            self.ObserveUserLogout()
+        } else {
+            print("no user")
+        }
         
         return true
+    }
+    
+    // --------------------------------------
+    
+    private func ObserveUserLogout() {
+        NSNotificationCenter.defaultCenter().addObserverForName("UserDidLogout", object: nil, queue: NSOperationQueue.mainQueue()) { (note: NSNotification) -> Void in
+            print("user logged out")
+            self.logOutUser()
+        }
+    }
+    
+    // --------------------------------------
+    
+    private func ObserveUserLogin() {
+        NSNotificationCenter.defaultCenter().addObserverForName("UserDidLogout", object: nil, queue: NSOperationQueue.mainQueue()) { (note: NSNotification) -> Void in
+            print("user logged out")
+            self.logOutUser()
+        }
+    }
+    
+    // --------------------------------------
+    
+    private func logOutUser() {
+        let LoginViewController = self.storyBoard.instantiateInitialViewController()
+        
+        UIView.transitionWithView(
+            self.window!,
+            duration: 0.5,
+            options: UIViewAnimationOptions.TransitionFlipFromLeft,
+            animations: { () -> Void in
+                self.window?.rootViewController = LoginViewController
+            }, completion: nil)
+    }
+    
+    // --------------------------------------
+    
+    private func setRootAsHamburger() {
+        let hamburgerViewController = self.storyBoard.instantiateViewControllerWithIdentifier("HamburgerView") as! HamburgerViewController
+        
+        self.window?.rootViewController = hamburgerViewController
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -66,6 +95,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
+        print("open url called")
         TwitterClient.sharedInstance.handleOpenURL(url)
         return true
     }

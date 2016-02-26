@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="t6p-tz-iOx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -53,12 +53,12 @@
                         </constraints>
                     </view>
                     <connections>
-                        <segue destination="FrN-RI-1R1" kind="modal" identifier="loggedInSegue" modalTransitionStyle="flipHorizontal" id="B2u-Pq-0ao"/>
+                        <segue destination="t6p-tz-iOx" kind="modal" identifier="logInSegue" modalTransitionStyle="flipHorizontal" id="iF0-W4-y9y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="130" y="299"/>
+            <point key="canvasLocation" x="68" y="627"/>
         </scene>
         <!--Compose View Controller-->
         <scene sceneID="zCc-si-MgZ">
@@ -376,8 +376,8 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fmS-ri-ZLZ">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fmS-ri-ZLZ">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vwy-NV-P9z">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
@@ -701,7 +701,7 @@
                     </connections>
                 </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="84" y="-1449"/>
+            <point key="canvasLocation" x="84" y="-125"/>
         </scene>
         <!--Profile-->
         <scene sceneID="u2a-zI-prf">

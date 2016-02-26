@@ -12,20 +12,21 @@ import BDBOAuth1Manager
 class LoginViewController: UIViewController {
     
     let client = TwitterClient.sharedInstance
+    let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+    var window: UIWindow?
 
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    // --------------------------------------
 
     @IBAction func loginTapped(sender: AnyObject) {
-        
         self.client.login({ (response: String) -> () in
-                print("login success", response);
-                self.performSegueWithIdentifier("loggedInSegue", sender: nil)
-            
-            
-            }) { (error: NSError) -> () in
-                print("login failure: ", error.localizedDescription)
+            self.performSegueWithIdentifier("logInSegue", sender: nil)
+        }) { (error: NSError) -> () in
+            print("login failure: ", error.localizedDescription)
         }
     }
+    
 }

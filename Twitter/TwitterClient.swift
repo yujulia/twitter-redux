@@ -63,6 +63,8 @@ class TwitterClient: BDBOAuth1SessionManager {
     
     func handleOpenURL(url: NSURL) {
         
+        print("handling open url")
+        
         let requestToken = BDBOAuth1Credential(queryString: url.query)
         
         self.fetchAccessTokenWithPath(
@@ -70,6 +72,8 @@ class TwitterClient: BDBOAuth1SessionManager {
             method: "POST",
             requestToken: requestToken,
             success: { (credentials: BDBOAuth1Credential!) -> Void in
+                
+                print("got access token")
                 
                 self.verifyCredentials(
                     { (user: User) -> () in
@@ -82,7 +86,7 @@ class TwitterClient: BDBOAuth1SessionManager {
                 )   
                 
             }) { (error: NSError!) -> Void in
-                print(error.localizedDescription)
+                print("error trying to get access token", error.localizedDescription)
         }
     }
     
@@ -94,6 +98,7 @@ class TwitterClient: BDBOAuth1SessionManager {
             parameters: nil,
             progress: nil,
             success: { (task: NSURLSessionDataTask, response: AnyObject?) -> Void in
+                print("verify cred ok")
                 let userDictionary = response as? NSDictionary
                 if let userDictionary = userDictionary {
                     let user = User(userData: userDictionary)
@@ -103,6 +108,7 @@ class TwitterClient: BDBOAuth1SessionManager {
                 }
                 
             }) { (task: NSURLSessionDataTask?, error: NSError) -> Void in
+                print("unable to verify")
                 failure(error)
         }
     }
