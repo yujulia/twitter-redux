@@ -8,6 +8,10 @@
 
 import UIKit
 
+@objc protocol HamburgerViewControllerDelegate {
+    optional func hamburgerViewController(hamburgerViewController: HamburgerViewController, didSetEndpoint value: Int)
+}
+
 class HamburgerViewController: UIViewController {
     
     @IBOutlet weak var contentLead: NSLayoutConstraint!
@@ -17,10 +21,10 @@ class HamburgerViewController: UIViewController {
     private var originalLead: CGFloat! = 0
     private var open: Bool = false
     
+    var delegate: HamburgerViewControllerDelegate?
+    
     var menuViewController: UIViewController! {
         didSet(oldMenuViewController) {
-            
-            print("set menu", self.menuViewController)
             
             self.view.layoutIfNeeded()
             
@@ -40,8 +44,6 @@ class HamburgerViewController: UIViewController {
     var contentViewController: UIViewController! {
         didSet(oldContentViewController) {
             
-            print("set content", self.contentViewController)
-            
             self.view.layoutIfNeeded()
             
             if oldContentViewController != nil {
@@ -53,8 +55,17 @@ class HamburgerViewController: UIViewController {
             self.contentViewController.willMoveToParentViewController(self)
             self.contentView.addSubview(self.contentViewController.view)
             self.contentViewController.didMoveToParentViewController(self)
+            
             self.closeMenu()
             self.view.layoutIfNeeded()
+        }
+    }
+    
+    var endpoint: TwitterClient.Timelines? {
+        didSet {
+            if let endpointIntValue = self.endpoint?.rawValue {
+                self.delegate?.hamburgerViewController?(self, didSetEndpoint: endpointIntValue)
+            }
         }
     }
     
@@ -67,12 +78,12 @@ class HamburgerViewController: UIViewController {
         let menuViewController = storyBoard.instantiateViewControllerWithIdentifier("MenuView") as! MenuViewController
         menuViewController.hamburgerViewController = self
         self.menuViewController = menuViewController
+    
     }
     
     // --------------------------------------
     
     private func closeMenu() {
-        print("close menu called")
         UIView.animateWithDuration(
             0.1,
             delay: 0,

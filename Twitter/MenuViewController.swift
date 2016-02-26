@@ -18,11 +18,23 @@ class MenuViewController: UIViewController, UITableViewDataSource {
     
     private var MenuViewControllers: [UIViewController] = []
     private var ProfileNavController: UIViewController!
-//    private var MentionsNavController: UIViewController!
     private var TweetsNavController: UIViewController!
     
-    private var MenuTitles: [String] = ["Profile", "Home", "Mentions"]
-    private var MenuImages: [String] = ["user", "home", "at"]
+    private var MenuTitles: [String] = [
+        "Profile",
+        "Home",
+        "Mentions"
+    ]
+    private var MenuImages: [String] = [
+        "user",
+        "home",
+        "at"
+    ]
+    private var TimelineEndpoints: [TwitterClient.Timelines] = [
+        TwitterClient.Timelines.Nothing,
+        TwitterClient.Timelines.Home,
+        TwitterClient.Timelines.Mentions
+    ]
     
     var hamburgerViewController: HamburgerViewController!
     
@@ -104,10 +116,16 @@ extension MenuViewController: UITableViewDelegate {
     // --------------------------------------
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print("index path", indexPath.row)
-//        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        print("index selected ", indexPath.row, self.MenuTitles[indexPath.row])
-        self.hamburgerViewController.contentViewController = self.MenuViewControllers[indexPath.row]
+
+        let selectedController = self.MenuViewControllers[indexPath.row]
+
+        if let nav = selectedController as? UINavigationController {
+            let firstChildController = nav.viewControllers[0]
+            self.hamburgerViewController.delegate = firstChildController as? HamburgerViewControllerDelegate
+        }
+
+        self.hamburgerViewController.endpoint = self.TimelineEndpoints[indexPath.row]
+        self.hamburgerViewController.contentViewController = selectedController
     }
     
 }

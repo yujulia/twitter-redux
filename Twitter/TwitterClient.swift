@@ -26,6 +26,12 @@ private let ENDPOINT_MENTIONS_TIMELINE = "/1.1/statuses/mentions_timeline.json"
 
 class TwitterClient: BDBOAuth1SessionManager {
     
+    enum Timelines: Int {
+        case Nothing = 0
+        case Home = 1
+        case Mentions = 2
+    }
+    
     static let sharedInstance = TwitterClient(
         baseURL: NSURL(string: BASE_URL)!,
         consumerKey: CONSUMER_KEY,
@@ -126,27 +132,26 @@ class TwitterClient: BDBOAuth1SessionManager {
     
     // ----------------------------------------- timeline
     
-    func loadMentionsTimeline(
-        last_id: Int?,
-        success: () -> (),
-        failure: (NSError) -> ()
-    ){
+    func loadTimelineOfType(timeline: Timelines, last_id: Int?, success: () -> (), failure: (NSError) -> ()) {
         
+        // default to home timline
+        var endpoint = ENDPOINT_HOME_TIMELINE
+        if timeline == Timelines.Mentions {
+            endpoint = ENDPOINT_MENTIONS_TIMELINE
+        }
         
-    }
-
-    func loadHomeTimeline(last_id: Int?, success: () -> (), failure: (NSError) -> ()){
+        // set params if any
         var params: [String: Int]?
-        
         if let id = last_id {
             let nextMax = id - 1
             params = ["max_id": nextMax]
         }
-        
-        self.getTimeline(
-            ENDPOINT_HOME_TIMELINE,
-            params: params,
-            success: { (response: AnyObject) -> () in
+
+        self.GET(
+            endpoint,
+            parameters: params,
+            progress: nil,
+            success: { (task: NSURLSessionDataTask, response: AnyObject?) -> Void in
                 if let allTweets = response as? [NSDictionary] {
                     let tweets = Tweet.tweetsWithArray(allTweets)
                     State.lastBatchCount = tweets.count
@@ -160,24 +165,9 @@ class TwitterClient: BDBOAuth1SessionManager {
                     State.currentHomeTweetCount = State.homeTweets?.count ?? 0
                     success()
                 }
-            },
-            failure: { (error: NSError) -> () in
-                failure(error)
-            }
-        )
-    }
-    
-    func getTimeline(endpoint: String, params: NSDictionary?, success: (AnyObject) -> (), failure: (NSError) -> ()){
-        self.GET(
-            endpoint,
-            parameters: params,
-            progress: nil,
-            success: { (task: NSURLSessionDataTask, response: AnyObject?) -> Void in
-                success(response!)
             }) { (task: NSURLSessionDataTask?, error: NSError) -> Void in
                 failure(error)
         }
-        
     }
     
     // ----------------------------------------- post reply or new tweet

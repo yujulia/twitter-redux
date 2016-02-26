@@ -20,69 +20,46 @@ class TweetsViewController: UIViewController, UITableViewDataSource {
     let client = TwitterClient.sharedInstance
     let refreshControl = UIRefreshControl()
     
-    var loading: Bool = false
-    var hud: MBProgressHUD?
+    private var loading: Bool = false
+    private var hud: MBProgressHUD?
     
-    var endpoint: String = "home"
+    var endpoint = TwitterClient.Timelines.Mentions
     
     // --------------------------------------
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupTable()
-        self.loadTimeline()
         self.setupRefresh()
     }
 
     // -------------------------------------- load the timeline
     
-    private func loadTimeline() {
-        
-        self.isLoading()
-        
-        if self.endpoint == "home" {
-            client.loadHomeTimeline(
-                nil,
-                success: { () -> () in
-                    self.loadDone()
-                },
-                failure: { (error: NSError) -> () in
-                    self.loadError(error)
-                }
-            )
-        }
-        
-        if self.endpoint == "mentions" {
-            client.loadMentionsTimeline(
-                nil,
-                success: { () -> () in
-                    self.loadDone()
-                },
-                failure: { (error: NSError) -> () in
-                    self.loadError(error)
-                }
-            )
-        }
-    }
-    
-    private func loadMore(last_id: Int) {
-        print("trying to load more");
+    private func loadTimeline(last_id: Int?) {
 
         self.isLoading()
-        client.loadHomeTimeline(
-            last_id,
+    
+        // load our timeline
+        
+        client.loadTimelineOfType(
+            self.endpoint,
+            last_id: last_id,
             success: { () -> () in
-                self.loadMoreDone()
+                if last_id != nil {
+                    self.loadMoreDone()
+                } else {
+                    self.loadDone()
+                }
             },
             failure: { (error: NSError) -> () in
-                print("couldnt get tweets", error.localizedDescription)
+                self.loadError(error)
             }
         )
     }
     
     private func loadError(error: NSError) {
         self.notLoading()
-        print("couldnt get tweets", error.localizedDescription)
+        print("tweets vc couldnt get tweets", error.localizedDescription)
     }
     
     private func loadDone() {
@@ -125,7 +102,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource {
     //-------------------------------------------- pull to refresh load data
     
     func refresh(refreshControl: UIRefreshControl) {
-        self.loadTimeline()
+        self.loadTimeline(nil)
     }
     
     // -------------------------------------- logout
@@ -198,7 +175,7 @@ extension TweetsViewController: UITableViewDelegate {
         
         if indexPath.row >= State.homeTweets!.count-1 {
             if let cellData = State.homeTweets?[indexPath.row] {
-                self.loadMore(Int(cellData.id!))
+                self.loadTimeline(Int(cellData.id!))
             }
         }
     
@@ -234,5 +211,17 @@ extension TweetsViewController: ComposeViewControllerDelegate {
         self.tableView.beginUpdates()
         self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Fade)
         self.tableView.endUpdates()
+    }
+}
+
+// hamburger delegate
+
+extension TweetsViewController: HamburgerViewControllerDelegate {
+    func hamburgerViewController(hamburgerViewController: HamburgerViewController, didSetEndpoint value: Int) {
+        if let endpointType = TwitterClient.Timelines(rawValue: value) {
+            self.endpoint = endpointType
+            print("endpoint set by delegate")
+            self.loadTimeline(nil)
+        }
     }
 }
