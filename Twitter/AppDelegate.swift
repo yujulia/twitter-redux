@@ -21,8 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let menuViewController = self.storyBoard.instantiateViewControllerWithIdentifier("MenuView") as! MenuViewController
         
             self.window?.rootViewController = hamburgerViewController
-            hamburgerViewController.menuViewController = menuViewController
+        
             menuViewController.hamburgerViewController = hamburgerViewController
+            hamburgerViewController.menuViewController = menuViewController
+        
         
 //        if State.currentUser != nil {
 //            let TweetsNavController = self.storyBoard.instantiateViewControllerWithIdentifier("TweetsNavController")

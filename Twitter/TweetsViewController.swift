@@ -41,7 +41,8 @@ class TweetsViewController: UIViewController, UITableViewDataSource {
             self.tableView.reloadData()
             self.notLoading()
         }) { (error: NSError) -> () in
-                print("couldnt get tweets", error.localizedDescription)
+            self.notLoading()
+            print("couldnt get tweets", error.localizedDescription)
         }
     }
     

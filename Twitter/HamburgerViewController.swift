@@ -18,16 +18,36 @@ class HamburgerViewController: UIViewController {
     private var open: Bool = false
     
     var menuViewController: UIViewController! {
-        didSet {
+        didSet(oldContentViewController) {
+            
             self.view.layoutIfNeeded()
+            
+            if oldContentViewController != nil {
+                oldContentViewController.willMoveToParentViewController(nil)
+                oldContentViewController.view.removeFromSuperview()
+                oldContentViewController.didMoveToParentViewController(nil)
+            }
+            
+            self.menuViewController.willMoveToParentViewController(self)
             self.menuView.addSubview(menuViewController.view)
+            self.menuViewController.didMoveToParentViewController(self)
         }
     }
     
     var contentViewController: UIViewController! {
-        didSet {
+        didSet(oldContentViewController) {
+            
             self.view.layoutIfNeeded()
-            self.contentView.addSubview(contentViewController.view)
+            
+            if oldContentViewController != nil {
+                oldContentViewController.willMoveToParentViewController(nil)
+                oldContentViewController.view.removeFromSuperview()
+                oldContentViewController.didMoveToParentViewController(nil)
+            }
+            
+            self.contentViewController.willMoveToParentViewController(self)
+            self.contentView.addSubview(self.contentViewController.view)
+            self.contentViewController.didMoveToParentViewController(self)
             self.closeMenu()
         }
     }
@@ -70,7 +90,6 @@ class HamburgerViewController: UIViewController {
         })
 
     }
-    
     
     // --------------------------------------
 

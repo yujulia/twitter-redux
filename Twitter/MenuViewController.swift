@@ -44,8 +44,8 @@ class MenuViewController: UIViewController, UITableViewDataSource {
         MenuViewControllers.append(self.TweetsNavController)
         MenuViewControllers.append(self.MentionsNavController)
         
+        hamburgerViewController.contentViewController = MenuViewControllers[0]
     }
-
 }
 
 extension MenuViewController: UITableViewDelegate {
