@@ -28,6 +28,7 @@ class HamburgerViewController: UIViewController {
         didSet {
             self.view.layoutIfNeeded()
             self.contentView.addSubview(contentViewController.view)
+            self.closeMenu()
         }
     }
     
@@ -36,6 +37,40 @@ class HamburgerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    // --------------------------------------
+    
+    private func closeMenu() {
+        UIView.animateWithDuration(
+            0.1,
+            delay: 0,
+            options: UIViewAnimationOptions.CurveEaseInOut,
+            animations: { () -> Void in
+                self.contentLead.constant = 0
+                self.open = false
+                self.view.layoutIfNeeded()
+            },
+            completion: { (done: Bool) -> Void in
+                // animation done
+        })
+    }
+    
+    private func openMenu() {
+        UIView.animateWithDuration(
+            0.1,
+            delay: 0,
+            options: UIViewAnimationOptions.CurveEaseInOut,
+            animations: { () -> Void in
+                self.contentLead.constant = self.view.frame.size.width - 150
+                self.open = true
+                self.view.layoutIfNeeded()
+            },
+            completion: { (done: Bool) -> Void in
+                // animation done
+        })
+
+    }
+    
     
     // --------------------------------------
 
@@ -47,36 +82,17 @@ class HamburgerViewController: UIViewController {
         if sender.state == UIGestureRecognizerState.Began {
             self.originalLead = self.contentLead.constant
         } else if sender.state == UIGestureRecognizerState.Changed {
-            
             let offset = self.originalLead + translation.x
-
             if offset < 0 {
                 return
             }
-            
             self.contentLead.constant = offset
-        
         } else if sender.state == UIGestureRecognizerState.Ended {
-            
-            UIView.animateWithDuration(
-                0.1,
-                delay: 0,
-                options: UIViewAnimationOptions.CurveEaseInOut,
-                animations: { () -> Void in
-                    if velocity.x > 0 {
-                        self.contentLead.constant = self.view.frame.size.width - 150
-                        self.open = true
-                    } else {
-                        self.contentLead.constant = 0
-                        self.open = false
-                    }
-                    self.view.layoutIfNeeded()
-                },
-                completion: { (done: Bool) -> Void in
-                    // animation done
-            })
+            if velocity.x > 0 {
+                self.openMenu()
+            } else {
+                self.closeMenu()
+            }
         }
-        
     }
-    
 }
