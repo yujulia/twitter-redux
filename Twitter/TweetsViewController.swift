@@ -23,6 +23,8 @@ class TweetsViewController: UIViewController, UITableViewDataSource {
     var loading: Bool = false
     var hud: MBProgressHUD?
     
+    var endpoint: String = "home"
+    
     // --------------------------------------
     
     override func viewDidLoad() {
@@ -37,13 +39,24 @@ class TweetsViewController: UIViewController, UITableViewDataSource {
     private func loadTimeline() {
         
         self.isLoading()
-        client.loadHomeTimeline({ () -> () in
-            self.tableView.reloadData()
-            self.notLoading()
-        }) { (error: NSError) -> () in
-            self.notLoading()
-            print("couldnt get tweets", error.localizedDescription)
+        
+        if self.endpoint == "home" {
+            client.loadHomeTimeline({ () -> () in
+                self.loadDone()
+                }) { (error: NSError) -> () in
+                    self.loadError(error)
+            }
         }
+        
+//        if self.endpoint == "mentions" {
+//            client.loadMentionsTimeline({ () -> () in
+//                self.loadDone()
+//                }) { (error: NSError) -> () in
+//                    self.loadError(error)
+//            }
+//        }
+        
+        
     }
     
     private func loadMore(last_id: Int) {
@@ -53,25 +66,35 @@ class TweetsViewController: UIViewController, UITableViewDataSource {
         client.loadMoreHomeTimeline(
             last_id,
             success: { () -> () in
-                
-                let startRow = State.currentHomeTweetCount - State.lastBatchCount
-
-                var addPaths = [NSIndexPath]()
-                
-                for index in startRow...startRow + State.lastBatchCount - 1 {
-                    addPaths.append(NSIndexPath(forRow: index, inSection: 0))
-                }
-                
-                self.tableView.beginUpdates()
-                self.tableView.insertRowsAtIndexPaths(addPaths, withRowAnimation: UITableViewRowAnimation.Fade)
-                self.tableView.endUpdates()
-                
+                self.loadMoreDone()
                 self.notLoading()
             },
             failure: { (error: NSError) -> () in
                 print("couldnt get tweets", error.localizedDescription)
             }
         )
+    }
+    
+    private func loadError(error: NSError) {
+        self.notLoading()
+        print("couldnt get tweets", error.localizedDescription)
+    }
+    
+    private func loadDone() {
+        self.notLoading()
+        self.tableView.reloadData()
+    }
+    
+    private func loadMoreDone() {
+        self.notLoading()
+        let startRow = State.currentHomeTweetCount - State.lastBatchCount
+        var addPaths = [NSIndexPath]()
+        for index in startRow...startRow + State.lastBatchCount - 1 {
+            addPaths.append(NSIndexPath(forRow: index, inSection: 0))
+        }
+        self.tableView.beginUpdates()
+        self.tableView.insertRowsAtIndexPaths(addPaths, withRowAnimation: UITableViewRowAnimation.Fade)
+        self.tableView.endUpdates()
     }
     
     private func isLoading() {

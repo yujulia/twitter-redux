@@ -10,13 +10,15 @@ import UIKit
 
 class MenuViewController: UIViewController, UITableViewDataSource {
 
+    @IBOutlet weak var profileName: UILabel!
+    @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     
     let ESTIMATE_ROW_HEIGHT: CGFloat = 120.0
     
     private var MenuViewControllers: [UIViewController] = []
     private var ProfileNavController: UIViewController!
-    private var MentionsNavController: UIViewController!
+//    private var MentionsNavController: UIViewController!
     private var TweetsNavController: UIViewController!
     
     private var MenuTitles: [String] = ["Profile", "Home", "Mentions"]
@@ -30,6 +32,28 @@ class MenuViewController: UIViewController, UITableViewDataSource {
         super.viewDidLoad()
         self.getMenuViewControllers()
         self.setupTable()
+        self.setupProfile()
+    }
+    
+    // --------------------------------------
+    
+    private func setupProfile() {
+        
+        if let user = State.currentUser {
+            
+            if let name = user.name as? String {
+                self.profileName.text = name
+            }
+            
+            if let userImage = user.profileImageURL {
+                ImageLoader.loadImage(
+                    userImage,
+                    imageview: self.profileImage,
+                    success: nil,
+                    failure: nil
+                )
+            }
+        }
     }
     
     // -------------------------------------- get vc from storyboard and instantiate
@@ -38,12 +62,12 @@ class MenuViewController: UIViewController, UITableViewDataSource {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         
         self.ProfileNavController = storyBoard.instantiateViewControllerWithIdentifier("ProfileNavController")
-        self.MentionsNavController = storyBoard.instantiateViewControllerWithIdentifier("MentionsNavController")
+//        self.MentionsNavController = storyBoard.instantiateViewControllerWithIdentifier("MentionsNavController")
         self.TweetsNavController = storyBoard.instantiateViewControllerWithIdentifier("TweetsNavController")
         
         MenuViewControllers.append(self.ProfileNavController)
         MenuViewControllers.append(self.TweetsNavController)
-        MenuViewControllers.append(self.MentionsNavController)
+        MenuViewControllers.append(self.TweetsNavController)
         
         hamburgerViewController.contentViewController = MenuViewControllers[0]
     }

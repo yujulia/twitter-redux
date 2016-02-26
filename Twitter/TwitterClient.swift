@@ -113,7 +113,15 @@ class TwitterClient: BDBOAuth1SessionManager {
         }
     }
     
+    // -----------------------------------------
+    
+    func loadMentionsTimeline(last_id: Int, success: () -> (), failure: (NSError) -> ()) {
+        
+    }
+    
+
     // ----------------------------------------- load home timeline or load more
+    // just pass the fucking id as an optional
     
     func loadHomeTimeline(success: () -> (), failure: (NSError) -> ()) {
         self.getHomeTimeline(
