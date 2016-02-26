@@ -41,33 +41,38 @@ class TweetsViewController: UIViewController, UITableViewDataSource {
         self.isLoading()
         
         if self.endpoint == "home" {
-            client.loadHomeTimeline({ () -> () in
-                self.loadDone()
-                }) { (error: NSError) -> () in
+            client.loadHomeTimeline(
+                nil,
+                success: { () -> () in
+                    self.loadDone()
+                },
+                failure: { (error: NSError) -> () in
                     self.loadError(error)
-            }
+                }
+            )
         }
         
-//        if self.endpoint == "mentions" {
-//            client.loadMentionsTimeline({ () -> () in
-//                self.loadDone()
-//                }) { (error: NSError) -> () in
-//                    self.loadError(error)
-//            }
-//        }
-        
-        
+        if self.endpoint == "mentions" {
+            client.loadMentionsTimeline(
+                nil,
+                success: { () -> () in
+                    self.loadDone()
+                },
+                failure: { (error: NSError) -> () in
+                    self.loadError(error)
+                }
+            )
+        }
     }
     
     private func loadMore(last_id: Int) {
         print("trying to load more");
 
         self.isLoading()
-        client.loadMoreHomeTimeline(
+        client.loadHomeTimeline(
             last_id,
             success: { () -> () in
                 self.loadMoreDone()
-                self.notLoading()
             },
             failure: { (error: NSError) -> () in
                 print("couldnt get tweets", error.localizedDescription)

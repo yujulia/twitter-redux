@@ -14,7 +14,15 @@ private let CONSUMER_KEY = "tlQEQS7zcKp93aO8qfn3IOenH"
 private let CONSUMER_SECRET = "Hd5SmNqUmE09LnysMqoTWE2JMogm5yxYERBZGsA2Xbe4BDEwnJ"
 private let LOGOUT_EVENT = "UserDidLogout"
 
+private let CALLBACK_URL = "twitterdemo://oauth"
+private let AUTH_URL = "https://api.twitter.com/oauth/authorize?oauth_token="
 
+private let ENDPOINT_REQUEST_TOKEN = "oauth/request_token"
+private let ENDPOINT_ACCESS_TOKEN = "oauth/access_token"
+private let ENDPOINT_VERIFY_CREDENTIALS = "1.1/account/verify_credentials.json"
+
+private let ENDPOINT_HOME_TIMELINE = "1.1/statuses/home_timeline.json"
+private let ENDPOINT_MENTIONS_TIMELINE = "/1.1/statuses/mentions_timeline.json"
 
 class TwitterClient: BDBOAuth1SessionManager {
     
@@ -30,31 +38,35 @@ class TwitterClient: BDBOAuth1SessionManager {
     // ----------------------------------------- logout
     
     func logout() {
+        print("client logout about to happen")
         State.currentUser = nil
         self.deauthorize()
-        
         NSNotificationCenter.defaultCenter().postNotificationName(LOGOUT_EVENT, object: nil)
     }
     
     // ----------------------------------------- login
     
     func login(success: (String)->(), failure: (NSError) ->() ) {
+        print("client login")
         
         self.loginSuccess = success
         self.loginFailure = failure
         
         self.deauthorize()
         self.fetchRequestTokenWithPath(
-            "oauth/request_token",
+            ENDPOINT_REQUEST_TOKEN,
             method: "GET",
-            callbackURL: NSURL(string: "twitterdemo://oauth"),
+            callbackURL: NSURL(string: CALLBACK_URL),
             scope: nil,
             success: { (requestToken: BDBOAuth1Credential!) -> Void in
-            
-                let authURL = NSURL(string: "https://api.twitter.com/oauth/authorize?oauth_token=\(requestToken.token)")!
-                UIApplication.sharedApplication().openURL(authURL)
+                print("client login got request token")
+                let authString = AUTH_URL + requestToken.token
+                if let authURL = NSURL(string: authString) {
+                    UIApplication.sharedApplication().openURL(authURL)
+                }
             
             }) { (error: NSError!) -> Void in
+                print("client login failure", error.localizedDescription)
                 self.loginFailure?(error)
         }
     }
@@ -62,31 +74,32 @@ class TwitterClient: BDBOAuth1SessionManager {
     // ----------------------------------------- 
     
     func handleOpenURL(url: NSURL) {
-        
-        print("handling open url")
-        
-        let requestToken = BDBOAuth1Credential(queryString: url.query)
-        
-        self.fetchAccessTokenWithPath(
-            "oauth/access_token",
-            method: "POST",
-            requestToken: requestToken,
-            success: { (credentials: BDBOAuth1Credential!) -> Void in
-                
-                print("got access token")
-                
-                self.verifyCredentials(
-                    { (user: User) -> () in
-                        State.currentUser = user
-                        self.loginSuccess?("ok")
-                    },
-                    failure: { (error: NSError) -> () in
-                        self.loginFailure?(error)
-                    }
-                )   
-                
-            }) { (error: NSError!) -> Void in
-                print("error trying to get access token", error.localizedDescription)
+        if let requestToken = BDBOAuth1Credential(queryString: url.query) {
+            self.fetchAccessTokenWithPath(
+                ENDPOINT_ACCESS_TOKEN,
+                method: "POST",
+                requestToken: requestToken,
+                success: { (credentials: BDBOAuth1Credential!) -> Void in
+                    
+                    print("client got access token")
+                    
+                    self.verifyCredentials(
+                        { (user: User) -> () in
+                            print("client got credentials")
+                            State.currentUser = user
+                            self.loginSuccess?("ok")
+                        },
+                        failure: { (error: NSError) -> () in
+                            print("client failed to get credentials")
+                            self.loginFailure?(error)
+                        }
+                    )
+                    
+                }) { (error: NSError!) -> Void in
+                    print("client access token get error", error.localizedDescription)
+            }
+        } else {
+            print("client failed to make request token")
         }
     }
     
@@ -94,68 +107,57 @@ class TwitterClient: BDBOAuth1SessionManager {
     
     func verifyCredentials(success: (User) -> (), failure: (NSError) -> ()) {
         self.GET(
-            "1.1/account/verify_credentials.json",
+            ENDPOINT_VERIFY_CREDENTIALS,
             parameters: nil,
             progress: nil,
             success: { (task: NSURLSessionDataTask, response: AnyObject?) -> Void in
-                print("verify cred ok")
                 let userDictionary = response as? NSDictionary
                 if let userDictionary = userDictionary {
                     let user = User(userData: userDictionary)
                     success(user)
                 } else {
-                    print("Error verifying credentials: could not get user data from Twitter")
+                    print("client failed to verify credentials unable to get user data")
                 }
                 
             }) { (task: NSURLSessionDataTask?, error: NSError) -> Void in
-                print("unable to verify")
                 failure(error)
         }
     }
     
-    // -----------------------------------------
+    // ----------------------------------------- timeline
     
-    func loadMentionsTimeline(last_id: Int, success: () -> (), failure: (NSError) -> ()) {
+    func loadMentionsTimeline(
+        last_id: Int?,
+        success: () -> (),
+        failure: (NSError) -> ()
+    ){
+        
         
     }
-    
 
-    // ----------------------------------------- load home timeline or load more
-    // just pass the fucking id as an optional
-    
-    func loadHomeTimeline(success: () -> (), failure: (NSError) -> ()) {
-        self.getHomeTimeline(
-            nil,
-            success: { (response: AnyObject) -> () in
-                if let allTweets = response as? [NSDictionary] {
-                    let tweets = Tweet.tweetsWithArray(allTweets)
-                    State.currentHomeTweetCount = tweets.count
-                    State.lastBatchCount = tweets.count
-                    State.homeTweets = tweets
-                    success()
-                }
-            },
-            failure: { (error: NSError) -> () in
-                failure(error)
-            }
-        )
-    }
-    
-    func loadMoreHomeTimeline(last_id: Int, success: () -> (), failure: (NSError) -> ()) {
-        let nextMax = last_id - 1
-        let params = ["max_id": nextMax]
+    func loadHomeTimeline(last_id: Int?, success: () -> (), failure: (NSError) -> ()){
+        var params: [String: Int]?
         
-        self.getHomeTimeline(
-            params,
+        if let id = last_id {
+            let nextMax = id - 1
+            params = ["max_id": nextMax]
+        }
+        
+        self.getTimeline(
+            ENDPOINT_HOME_TIMELINE,
+            params: params,
             success: { (response: AnyObject) -> () in
                 if let allTweets = response as? [NSDictionary] {
                     let tweets = Tweet.tweetsWithArray(allTweets)
                     State.lastBatchCount = tweets.count
-                    State.homeTweets?.appendContentsOf(tweets)
-                    State.currentHomeTweetCount = (State.homeTweets?.count)!
                     
-                    print("load more got", State.lastBatchCount, " total ", State.currentHomeTweetCount)
+                    if last_id != nil {
+                        State.homeTweets?.appendContentsOf(tweets)
+                    } else {
+                        State.homeTweets = tweets
+                    }
                     
+                    State.currentHomeTweetCount = State.homeTweets?.count ?? 0
                     success()
                 }
             },
@@ -165,9 +167,9 @@ class TwitterClient: BDBOAuth1SessionManager {
         )
     }
     
-    func getHomeTimeline(params: NSDictionary?, success: (AnyObject) -> (), failure: (NSError) -> ()) {
+    func getTimeline(endpoint: String, params: NSDictionary?, success: (AnyObject) -> (), failure: (NSError) -> ()){
         self.GET(
-            "1.1/statuses/home_timeline.json",
+            endpoint,
             parameters: params,
             progress: nil,
             success: { (task: NSURLSessionDataTask, response: AnyObject?) -> Void in
@@ -175,7 +177,7 @@ class TwitterClient: BDBOAuth1SessionManager {
             }) { (task: NSURLSessionDataTask?, error: NSError) -> Void in
                 failure(error)
         }
-
+        
     }
     
     // ----------------------------------------- post reply or new tweet
