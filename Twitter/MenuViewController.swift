@@ -77,8 +77,10 @@ extension MenuViewController: UITableViewDelegate {
     
     // --------------------------------------
     
-    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
-        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        print("index path", indexPath.row)
+//        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        print("index selected ", indexPath.row, self.MenuTitles[indexPath.row])
         self.hamburgerViewController.contentViewController = self.MenuViewControllers[indexPath.row]
     }
     

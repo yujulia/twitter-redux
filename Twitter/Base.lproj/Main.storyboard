@@ -627,7 +627,7 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.27058823529999998" green="0.76470588240000004" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="NZ9-2l-Sol" firstAttribute="top" secondItem="J1o-Me-A6n" secondAttribute="bottom" id="0lh-1y-Hb3"/>
                             <constraint firstAttribute="trailing" secondItem="J1o-Me-A6n" secondAttribute="trailing" id="Ucy-nP-QeJ"/>

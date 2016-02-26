@@ -48,15 +48,13 @@ class HamburgerViewController: UIViewController {
             self.originalLead = self.contentLead.constant
         } else if sender.state == UIGestureRecognizerState.Changed {
             
-            if self.open {
-                if (velocity.x <= 0) {
-                    self.contentLead.constant = self.originalLead + translation.x
-                }
-            } else {
-                if (velocity.x > 0) {
-                    self.contentLead.constant = self.originalLead + translation.x
-                }
+            let offset = self.originalLead + translation.x
+
+            if offset < 0 {
+                return
             }
+            
+            self.contentLead.constant = offset
         
         } else if sender.state == UIGestureRecognizerState.Ended {
             
@@ -65,12 +63,9 @@ class HamburgerViewController: UIViewController {
                 delay: 0,
                 options: UIViewAnimationOptions.CurveEaseInOut,
                 animations: { () -> Void in
-                    // open
                     if velocity.x > 0 {
-                        self.contentLead.constant = self.view.frame.size.width - 50
+                        self.contentLead.constant = self.view.frame.size.width - 150
                         self.open = true
-                        
-                        // close
                     } else {
                         self.contentLead.constant = 0
                         self.open = false
