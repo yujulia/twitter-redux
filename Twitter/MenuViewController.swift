@@ -31,7 +31,7 @@ class MenuViewController: UIViewController, UITableViewDataSource {
         "user",
         "home",
         "at",
-        "twitter_logo_blue_48"
+        "Twitter_logo_blue_48"
     ]
     private var TimelineEndpoints: [TwitterClient.Timelines] = [
         TwitterClient.Timelines.Nothing,
