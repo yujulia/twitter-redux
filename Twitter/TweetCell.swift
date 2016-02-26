@@ -27,6 +27,8 @@ let railsStrings = [
 
 @objc protocol TweetCellDelegate {
     optional func tweetCell(tweetCell: TweetCell, didWantToReply value: TweetCell)
+    
+    optional func tweetCell(tweetCell: TweetCell, didWantToShowProfile value: User)
 }
 
 class TweetCell: UITableViewCell {
@@ -177,7 +179,7 @@ class TweetCell: UITableViewCell {
     // --------------------------------------
 
     @IBAction func onProfileTap(sender: AnyObject) {
-        // TODO --
+        self.delegate?.tweetCell?(self, didWantToShowProfile: self.data!.user!)
     }
     
     // --------------------------------------

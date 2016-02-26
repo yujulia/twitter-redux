@@ -125,10 +125,6 @@ class TweetsViewController: UIViewController, UITableViewDataSource {
         }
     }
     
-    @IBAction func onProfileTapped(sender: AnyObject) {
-        self.performSegueWithIdentifier("TimelineProfileSegue", sender: nil)
-    }
-    
     // -------------------------------------- segue
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -151,8 +147,12 @@ class TweetsViewController: UIViewController, UITableViewDataSource {
                 composeViewController.replyToTweet = currentCellData
             }
         }
-        if segue.identifier == "TimelineProfileSegue" {
-            print(sender)
+        if segue.identifier == "ProfileSegue" {
+            let profileViewController = segue.destinationViewController as! ProfileViewController
+            
+            if let user = sender as? User {
+                profileViewController.user = user
+            }
         }
     }
 }
@@ -208,9 +208,13 @@ extension TweetsViewController: UITableViewDelegate {
 // tweet cell delegate
 
 extension TweetsViewController: TweetCellDelegate {
+    
     func tweetCell(tweetCell: TweetCell, didWantToReply value: TweetCell) {
-
         self.performSegueWithIdentifier("ComposeSegue", sender: value)
+    }
+    
+    func tweetCell(tweetCell: TweetCell, didWantToShowProfile value: User) {
+        self.performSegueWithIdentifier("ProfileSegue", sender: value)
     }
 }
 

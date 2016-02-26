@@ -43,6 +43,13 @@ class ProfileViewController: UIViewController {
     
     // --------------------------------------
     
+    @IBAction func onXTap(sender: AnyObject) {
+        print("trying to dismiss");
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    // --------------------------------------
+    
     private func setDataAsProperty() {
 
         if let data = self.user {
