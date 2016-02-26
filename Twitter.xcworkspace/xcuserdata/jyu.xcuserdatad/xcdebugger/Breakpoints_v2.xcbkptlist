@@ -35,5 +35,98 @@
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Twitter/ProfileViewController.swift"
+            timestampString = "478169904.662208"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "ProfileViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Twitter.ProfileViewController.nameLabel.getter : weak Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.UILabel&gt;"
+                  moduleName = "Twitter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jyu/Documents/codepath/TwitterRedux/Twitter/ProfileViewController.swift"
+                  timestampString = "478169904.686127"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Twitter.ProfileViewController.nameLabel.setter : weak Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.UILabel&gt;"
+                  moduleName = "Twitter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jyu/Documents/codepath/TwitterRedux/Twitter/ProfileViewController.swift"
+                  timestampString = "478169904.687404"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Twitter.ProfileViewController.nameLabel.materializeForSet : weak Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.UILabel&gt;"
+                  moduleName = "Twitter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jyu/Documents/codepath/TwitterRedux/Twitter/ProfileViewController.swift"
+                  timestampString = "478169904.687544"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Twitter.ProfileViewController.init (Twitter.ProfileViewController.Type)(nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.NSBundle&gt;) -&gt; Twitter.ProfileViewController"
+                  moduleName = "Twitter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jyu/Documents/codepath/TwitterRedux/Twitter/ProfileViewController.swift"
+                  timestampString = "478169904.687645"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "233">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Twitter.ProfileViewController.init (Twitter.ProfileViewController.Type)(coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;Twitter.ProfileViewController&gt;"
+                  moduleName = "Twitter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jyu/Documents/codepath/TwitterRedux/Twitter/ProfileViewController.swift"
+                  timestampString = "478169904.687736"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "138">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

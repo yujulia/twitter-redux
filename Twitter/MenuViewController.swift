@@ -68,6 +68,10 @@ class MenuViewController: UIViewController, UITableViewDataSource {
         }
     }
     
+    @IBAction func profileTapped(sender: AnyObject) {
+        // go to profile
+    }
+    
     // -------------------------------------- get vc from storyboard and instantiate
     
     private func getMenuViewControllers() {

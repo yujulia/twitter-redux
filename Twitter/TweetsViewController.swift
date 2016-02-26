@@ -113,6 +113,18 @@ class TweetsViewController: UIViewController, UITableViewDataSource {
         NSNotificationCenter.defaultCenter().postNotificationName(HAMBURGER_TOGGLE_EVENT, object: nil)
     }
     
+    // -------------------------------------- update the title
+    
+    private func setTitle() {
+        if self.endpoint == TwitterClient.Timelines.Home {
+            self.title = "Home"
+        } else if self.endpoint == TwitterClient.Timelines.Mentions {
+            self.title = "Mentions"
+        } else {
+            self.title = "? Timeline"
+        }
+    }
+    
     // -------------------------------------- segue
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -224,6 +236,7 @@ extension TweetsViewController: HamburgerViewControllerDelegate {
 
         if let endpointType = TwitterClient.Timelines(rawValue: value) {
             self.endpoint = endpointType
+            self.setTitle()
             self.loadTimeline(nil)
         }
     }
