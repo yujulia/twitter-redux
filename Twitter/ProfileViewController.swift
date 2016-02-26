@@ -19,6 +19,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var followingCountLabel: UILabel!
     @IBOutlet weak var followersCountLabel: UILabel!
     @IBOutlet weak var tweetsCountLabel: UILabel!
+    @IBOutlet weak var closeButton: UIButton!
     
     var user: User? {
         didSet {
@@ -26,6 +27,15 @@ class ProfileViewController: UIViewController {
             self.setDataAsProperty()
         }
     }
+    
+    var showX: Bool = true {
+        didSet {
+            self.view.layoutIfNeeded()
+            self.toggleX()
+        }
+    }
+    
+    // --------------------------------------
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +49,14 @@ class ProfileViewController: UIViewController {
         self.profileImage.clipsToBounds = true
 
         // Do any additional setup after loading the view.
+    }
+    
+    private func toggleX() {
+        if self.showX {
+            self.closeButton.hidden = false
+        } else {
+            self.closeButton.hidden = true
+        }
     }
     
     // --------------------------------------

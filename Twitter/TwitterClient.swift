@@ -10,6 +10,7 @@ import UIKit
 import BDBOAuth1Manager
 
 let HAMBURGER_TOGGLE_EVENT = "HamburgerDidToggle"
+let HAMBURGER_OPEN_EVENT = "HamburgerDidToggle"
 let LOGOUT_EVENT = "UserDidLogout"
 
 private let BASE_URL = "https://api.twitter.com"

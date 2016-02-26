@@ -936,6 +936,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="closeButton" destination="inm-t5-VPb" id="wX7-SQ-gLS"/>
                         <outlet property="followersCountLabel" destination="RFQ-eD-7XP" id="dzq-Wj-HYC"/>
                         <outlet property="followingCountLabel" destination="tAc-td-dGG" id="7OG-5e-vaS"/>
                         <outlet property="profileBackgroundImage" destination="H5F-Ol-Zv3" id="jGb-ob-HDR"/>

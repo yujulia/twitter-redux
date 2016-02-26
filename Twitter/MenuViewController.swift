@@ -94,7 +94,7 @@ class MenuViewController: UIViewController, UITableViewDataSource {
         MenuViewControllers.append(self.TweetsNavController)
         MenuViewControllers.append(self.ExtraNavController)
         
-        hamburgerViewController.contentViewController = MenuViewControllers[0]
+        hamburgerViewController.contentViewController = MenuViewControllers[1]
     }
 }
 
@@ -135,6 +135,11 @@ extension MenuViewController: UITableViewDelegate {
         if let nav = selectedController as? UINavigationController {
             let firstChildController = nav.viewControllers[0]
             self.hamburgerViewController.delegate = firstChildController as? HamburgerViewControllerDelegate
+        }
+        
+        if indexPath.row == 0 {
+            let profileVC = selectedController as! ProfileViewController
+            profileVC.showX = false
         }
 
         self.hamburgerViewController.endpoint = self.TimelineEndpoints[indexPath.row]
