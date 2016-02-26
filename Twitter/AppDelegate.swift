@@ -43,15 +43,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // --------------------------------------
     
-    private func ObserveUserLogin() {
-        NSNotificationCenter.defaultCenter().addObserverForName("UserDidLogout", object: nil, queue: NSOperationQueue.mainQueue()) { (note: NSNotification) -> Void in
-            print("user logged out")
-            self.logOutUser()
-        }
-    }
-    
-    // --------------------------------------
-    
     private func logOutUser() {
         let LoginViewController = self.storyBoard.instantiateInitialViewController()
         
@@ -67,8 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // --------------------------------------
     
     private func setRootAsHamburger() {
-        let hamburgerViewController = self.storyBoard.instantiateViewControllerWithIdentifier("HamburgerView") as! HamburgerViewController
-        
+        let hamburgerViewController = self.storyBoard.instantiateViewControllerWithIdentifier("HamburgerView")         
         self.window?.rootViewController = hamburgerViewController
     }
 

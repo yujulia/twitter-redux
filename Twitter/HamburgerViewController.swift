@@ -64,13 +64,9 @@ class HamburgerViewController: UIViewController {
         super.viewDidLoad()
         
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        
-//        let hamburgerViewController = self.storyBoard.instantiateViewControllerWithIdentifier("HamburgerView") as! HamburgerViewController
         let menuViewController = storyBoard.instantiateViewControllerWithIdentifier("MenuView") as! MenuViewController
-        
         menuViewController.hamburgerViewController = self
         self.menuViewController = menuViewController
-//        hamburgerViewController.menuViewController = menuViewController
     }
     
     // --------------------------------------

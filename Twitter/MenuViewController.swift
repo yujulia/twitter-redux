@@ -20,6 +20,7 @@ class MenuViewController: UIViewController, UITableViewDataSource {
     private var TweetsNavController: UIViewController!
     
     private var MenuTitles: [String] = ["Profile", "Home", "Mentions"]
+    private var MenuImages: [String] = ["user", "home", "at"]
     
     var hamburgerViewController: HamburgerViewController!
     
@@ -71,6 +72,7 @@ extension MenuViewController: UITableViewDelegate {
         let cell = tableView.dequeueReusableCellWithIdentifier("MenuCell", forIndexPath: indexPath) as! MenuCell
         
         cell.menuLabel.text = self.MenuTitles[indexPath.row]
+        cell.menuIcon.image = UIImage(named: self.MenuImages[indexPath.row])
 
         return cell
     }
