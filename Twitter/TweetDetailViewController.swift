@@ -165,7 +165,19 @@ class TweetDetailViewController: UIViewController {
     }
     
     @IBAction func onTapProfile(sender: AnyObject) {
-        self.performSegueWithIdentifier("ProfileSegue", sender: nil)
+        
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+
+        let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("ProfileViewController") as! ProfileViewController
+        nextViewController.user = self.data?.user
+        
+        self.navigationController?.pushViewController(nextViewController, animated: true)
+        
+//        self.navigationController?.pushViewController(nextViewController, animated: true)
+//
+////        self.presentViewController(nextViewController, animated:true, completion:nil)
+        
+//        self.performSegueWithIdentifier("ProfileSegue", sender: nil)
     }
     // -------------------------------------- retweet
 
