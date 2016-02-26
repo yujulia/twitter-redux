@@ -9,18 +9,18 @@
 import UIKit
 import BDBOAuth1Manager
 
+let HAMBURGER_TOGGLE_EVENT = "HamburgerDidToggle"
+let LOGOUT_EVENT = "UserDidLogout"
+
 private let BASE_URL = "https://api.twitter.com"
 private let CONSUMER_KEY = "tlQEQS7zcKp93aO8qfn3IOenH"
 private let CONSUMER_SECRET = "Hd5SmNqUmE09LnysMqoTWE2JMogm5yxYERBZGsA2Xbe4BDEwnJ"
-private let LOGOUT_EVENT = "UserDidLogout"
-
 private let CALLBACK_URL = "twitterdemo://oauth"
 private let AUTH_URL = "https://api.twitter.com/oauth/authorize?oauth_token="
 
 private let ENDPOINT_REQUEST_TOKEN = "oauth/request_token"
 private let ENDPOINT_ACCESS_TOKEN = "oauth/access_token"
 private let ENDPOINT_VERIFY_CREDENTIALS = "1.1/account/verify_credentials.json"
-
 private let ENDPOINT_HOME_TIMELINE = "1.1/statuses/home_timeline.json"
 private let ENDPOINT_MENTIONS_TIMELINE = "/1.1/statuses/mentions_timeline.json"
 

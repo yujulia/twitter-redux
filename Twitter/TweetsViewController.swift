@@ -9,8 +9,6 @@
 import UIKit
 import MBProgressHUD
 
-private let FEED_LIMIT = 20
-
 class TweetsViewController: UIViewController, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
@@ -111,7 +109,11 @@ class TweetsViewController: UIViewController, UITableViewDataSource {
         self.client.logout()
     }
     
-    // -------------------------------------- logout
+    @IBAction func toggleHamburger(sender: UIBarButtonItem) {
+        NSNotificationCenter.defaultCenter().postNotificationName(HAMBURGER_TOGGLE_EVENT, object: nil)
+    }
+    
+    // -------------------------------------- segue
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
@@ -217,11 +219,13 @@ extension TweetsViewController: ComposeViewControllerDelegate {
 // hamburger delegate
 
 extension TweetsViewController: HamburgerViewControllerDelegate {
+    
     func hamburgerViewController(hamburgerViewController: HamburgerViewController, didSetEndpoint value: Int) {
+
         if let endpointType = TwitterClient.Timelines(rawValue: value) {
             self.endpoint = endpointType
-            print("endpoint set by delegate")
             self.loadTimeline(nil)
         }
     }
+    
 }

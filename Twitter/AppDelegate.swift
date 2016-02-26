@@ -35,8 +35,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // --------------------------------------
     
     private func ObserveUserLogout() {
-        NSNotificationCenter.defaultCenter().addObserverForName("UserDidLogout", object: nil, queue: NSOperationQueue.mainQueue()) { (note: NSNotification) -> Void in
-            print("user logged out")
+        NSNotificationCenter.defaultCenter().addObserverForName(LOGOUT_EVENT, object: nil, queue: NSOperationQueue.mainQueue()) { (note: NSNotification) -> Void in
+            print("user wants to log out")
             self.logOutUser()
         }
     }

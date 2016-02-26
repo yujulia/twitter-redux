@@ -30,7 +30,7 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-- [x] mentions timeline implemented
+- [x] toggle hamburger menu open from anywhere on icon
 
 ## Video Walkthrough
 

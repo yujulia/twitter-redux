@@ -341,6 +341,9 @@
                         <leftBarButtonItems>
                             <barButtonItem image="hamburger" id="WgX-ng-s3s">
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="toggleHamburger:" destination="oeW-SN-q3n" id="H4E-xc-cTc"/>
+                                </connections>
                             </barButtonItem>
                             <barButtonItem image="minus-person" id="1hJ-bw-ZS6">
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -762,6 +765,9 @@
                     <navigationItem key="navigationItem" title="Profile" id="lAA-Q5-ehs">
                         <barButtonItem key="leftBarButtonItem" image="hamburger" id="ufL-Jl-EYj">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="onHamburgerToggle:" destination="i2k-Tx-TEv" id="4Hj-kl-3Xi"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                 </viewController>
@@ -832,7 +838,7 @@
         <image name="write" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ypb-gJ-NDf"/>
+        <segue reference="l3l-Zs-sYR"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>
