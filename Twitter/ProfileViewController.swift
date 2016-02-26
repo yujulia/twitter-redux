@@ -44,7 +44,6 @@ class ProfileViewController: UIViewController {
     // --------------------------------------
     
     @IBAction func onXTap(sender: AnyObject) {
-        print("trying to dismiss");
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -89,7 +88,10 @@ class ProfileViewController: UIViewController {
                     imageview: self.profileBackgroundImage,
                     success: nil,
                     failure: nil
+                    
                 )
+            } else {
+                self.profileBackgroundImage.image = UIImage(named: "bg")
             }
         }
     }

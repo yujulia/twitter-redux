@@ -74,24 +74,9 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ttm-KM-vOE">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k0B-RL-kva">
-                                        <rect key="frame" x="280" y="34" width="20" height="20"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="20" id="euX-6G-cFF"/>
-                                            <constraint firstAttribute="height" constant="20" id="uLf-LS-PDG"/>
-                                        </constraints>
-                                        <state key="normal" image="close"/>
-                                        <connections>
-                                            <action selector="xClick:" destination="Y70-oQ-fN0" eventType="touchUpInside" id="8gO-YT-cLJ"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="k0B-RL-kva" secondAttribute="trailing" constant="20" id="LVQ-OP-dZn"/>
                                     <constraint firstAttribute="height" constant="64" id="Ncj-lD-jbP"/>
-                                    <constraint firstAttribute="bottom" secondItem="k0B-RL-kva" secondAttribute="bottom" constant="10" id="kqf-wH-Qf4"/>
                                 </constraints>
                             </view>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="KmT-cv-bXj">
@@ -112,7 +97,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="140" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7p0-Kh-MbL">
-                                <rect key="frame" x="58" y="308" width="23" height="16"/>
+                                <rect key="frame" x="58" y="308" width="22.5" height="16"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -133,10 +118,23 @@
                                     <action selector="onTweet:" destination="Y70-oQ-fN0" eventType="touchUpInside" id="8Ii-I6-PaA"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k0B-RL-kva">
+                                <rect key="frame" x="280" y="484" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="euX-6G-cFF"/>
+                                    <constraint firstAttribute="height" constant="20" id="uLf-LS-PDG"/>
+                                </constraints>
+                                <state key="normal" image="close"/>
+                                <connections>
+                                    <action selector="xClick:" destination="Y70-oQ-fN0" eventType="touchUpInside" id="8gO-YT-cLJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="k0B-RL-kva" secondAttribute="trailing" constant="20" id="0ua-2c-iYU"/>
                             <constraint firstItem="KmT-cv-bXj" firstAttribute="top" secondItem="ttm-KM-vOE" secondAttribute="bottom" constant="20" id="1Y3-6G-dT9"/>
+                            <constraint firstItem="gxk-n7-02k" firstAttribute="top" secondItem="k0B-RL-kva" secondAttribute="bottom" constant="20" id="1zf-VB-Jud"/>
                             <constraint firstItem="DHb-sG-ofJ" firstAttribute="top" secondItem="KmT-cv-bXj" secondAttribute="bottom" constant="10" id="37Q-hG-1S3"/>
                             <constraint firstAttribute="trailing" secondItem="KmT-cv-bXj" secondAttribute="trailing" constant="20" id="EUc-Hv-80a"/>
                             <constraint firstAttribute="trailing" secondItem="ttm-KM-vOE" secondAttribute="trailing" id="FpG-49-EDN"/>
@@ -150,9 +148,7 @@
                             <constraint firstItem="7p0-Kh-MbL" firstAttribute="leading" secondItem="DHb-sG-ofJ" secondAttribute="trailing" constant="8" id="xNo-1G-SVj"/>
                         </constraints>
                     </view>
-                    <toolbarItems>
-                        <barButtonItem title="Item" id="8f4-X6-80K"/>
-                    </toolbarItems>
+                    <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="charCount" destination="7p0-Kh-MbL" id="ukO-aQ-0CL"/>
@@ -578,10 +574,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="pSY-wR-4PZ">
-                        <barButtonItem key="rightBarButtonItem" title="Reply" id="AVB-Kq-Dj5">
-                            <inset key="imageInsets" minX="20" minY="10" maxX="0.0" maxY="20"/>
+                        <barButtonItem key="rightBarButtonItem" image="quill" id="Fpy-Yw-4Td">
                             <connections>
-                                <segue destination="Y70-oQ-fN0" kind="modal" identifier="ReplySegue" id="ypb-gJ-NDf"/>
+                                <segue destination="Y70-oQ-fN0" kind="modal" identifier="ComposeSegue" id="cXc-6p-SZJ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -808,7 +803,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="H5F-Ol-Zv3">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="H5F-Ol-Zv3">
                                 <rect key="frame" x="0.0" y="20" width="320" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="hab-1A-ihB"/>
@@ -1036,8 +1031,8 @@
         <image name="write" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="l3l-Zs-sYR"/>
-        <segue reference="e8l-8d-E4I"/>
+        <segue reference="cXc-6p-SZJ"/>
+        <segue reference="fpy-XE-hAU"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>
