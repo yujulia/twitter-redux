@@ -140,6 +140,8 @@ class TweetCell: UITableViewCell {
                 UIView.animateWithDuration(0.3,
                     animations:  {() in
                         self.profileImage.alpha = 1
+                        let imageTapGestureRecognizer = UITapGestureRecognizer(target: self, action: "onProfileImageTap:")
+                        self.profileImage.addGestureRecognizer(imageTapGestureRecognizer)
                     }
                 )
             },
@@ -149,6 +151,15 @@ class TweetCell: UITableViewCell {
                 self.profileImage.alpha = 1
             }
         )
+    }
+    
+     // --------------------------------------
+    
+    func onProfileImageTap(sender: UITapGestureRecognizer) {
+        let state = sender.state
+        if state == UIGestureRecognizerState.Ended {
+            self.delegate?.tweetCell?(self, didWantToShowProfile: self.data!.user!)
+        }
     }
     
     // --------------------------------------
@@ -174,12 +185,6 @@ class TweetCell: UITableViewCell {
                     self.retweeted = true
             })
         }
-    }
-    
-    // --------------------------------------
-
-    @IBAction func onProfileTap(sender: AnyObject) {
-        self.delegate?.tweetCell?(self, didWantToShowProfile: self.data!.user!)
     }
     
     // --------------------------------------

@@ -277,17 +277,6 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dwO-zr-AR8">
-                                                    <rect key="frame" x="10" y="51" width="50" height="50"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="50" id="BJk-Jg-iqR"/>
-                                                        <constraint firstAttribute="width" constant="50" id="NiZ-bE-WJ4"/>
-                                                    </constraints>
-                                                    <connections>
-                                                        <action selector="onProfileTap:" destination="ehc-CM-qFh" eventType="touchUpInside" id="0I6-a1-s8q"/>
-                                                    </connections>
-                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="2X6-C9-VI3" firstAttribute="centerY" secondItem="G9D-Vf-lDs" secondAttribute="centerY" id="3QD-Vv-O5f"/>
@@ -296,14 +285,12 @@
                                                 <constraint firstItem="Pi7-RG-MGG" firstAttribute="leading" secondItem="G9D-Vf-lDs" secondAttribute="leading" id="9cd-wv-J8z"/>
                                                 <constraint firstItem="2X6-C9-VI3" firstAttribute="leading" secondItem="G9D-Vf-lDs" secondAttribute="trailing" constant="5" id="H6n-9h-fkz"/>
                                                 <constraint firstItem="p7E-Ed-naj" firstAttribute="top" secondItem="RYF-P8-PXU" secondAttribute="top" id="Hne-eG-Dbe"/>
-                                                <constraint firstItem="dwO-zr-AR8" firstAttribute="leading" secondItem="y64-Ho-Ldo" secondAttribute="leading" id="IQG-EK-jqg"/>
                                                 <constraint firstItem="VoC-tD-WI3" firstAttribute="leading" secondItem="G9D-Vf-lDs" secondAttribute="leading" id="JUP-pO-f8x"/>
                                                 <constraint firstItem="G9D-Vf-lDs" firstAttribute="top" secondItem="p7E-Ed-naj" secondAttribute="bottom" constant="10" id="KtQ-jJ-Bdr"/>
                                                 <constraint firstItem="AVK-rW-vxM" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="2X6-C9-VI3" secondAttribute="trailing" constant="5" id="M30-De-pqF"/>
                                                 <constraint firstItem="p7E-Ed-naj" firstAttribute="leading" secondItem="RYF-P8-PXU" secondAttribute="trailing" constant="10" id="Wq4-Fk-Iy2"/>
                                                 <constraint firstItem="y64-Ho-Ldo" firstAttribute="leading" secondItem="yHU-k6-J36" secondAttribute="leading" constant="10" id="YP7-6A-pj1"/>
                                                 <constraint firstItem="RYF-P8-PXU" firstAttribute="top" secondItem="yHU-k6-J36" secondAttribute="top" constant="10" id="Ysm-f5-aaq"/>
-                                                <constraint firstItem="dwO-zr-AR8" firstAttribute="top" secondItem="y64-Ho-Ldo" secondAttribute="top" id="a8r-96-e7K"/>
                                                 <constraint firstItem="K4S-OX-4FL" firstAttribute="leading" secondItem="70j-bZ-rR9" secondAttribute="trailing" constant="40" id="akX-pq-zFg"/>
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Pi7-RG-MGG" secondAttribute="bottom" constant="20" id="auz-6s-fiR"/>
                                                 <constraint firstAttribute="trailing" secondItem="AVK-rW-vxM" secondAttribute="trailing" constant="20" id="e6s-3U-4MM"/>
