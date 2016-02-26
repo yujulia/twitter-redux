@@ -49,10 +49,6 @@ class Tweet: NSObject {
         if let tweeter = tweetData["user"] {
             let tweetUser = User.init(userData: tweeter as! NSDictionary)
             self.user = tweetUser
-            
-            print("got back user")
-            print(self.user?.name)
-            print(self.user?.screenName)
         }
         
     }

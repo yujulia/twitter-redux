@@ -19,21 +19,25 @@ class MenuViewController: UIViewController, UITableViewDataSource {
     private var MenuViewControllers: [UIViewController] = []
     private var ProfileNavController: UIViewController!
     private var TweetsNavController: UIViewController!
+    private var ExtraNavController: UIViewController!
     
     private var MenuTitles: [String] = [
         "Profile",
         "Home",
-        "Mentions"
+        "Mentions",
+        "Extra"
     ]
     private var MenuImages: [String] = [
         "user",
         "home",
-        "at"
+        "at",
+        "twitter_logo_blue_48"
     ]
     private var TimelineEndpoints: [TwitterClient.Timelines] = [
         TwitterClient.Timelines.Nothing,
         TwitterClient.Timelines.Home,
-        TwitterClient.Timelines.Mentions
+        TwitterClient.Timelines.Mentions,
+        TwitterClient.Timelines.Nothing
     ]
     
     var hamburgerViewController: HamburgerViewController!
@@ -78,12 +82,13 @@ class MenuViewController: UIViewController, UITableViewDataSource {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         
         self.ProfileNavController = storyBoard.instantiateViewControllerWithIdentifier("ProfileNavController")
-//        self.MentionsNavController = storyBoard.instantiateViewControllerWithIdentifier("MentionsNavController")
+        self.ExtraNavController = storyBoard.instantiateViewControllerWithIdentifier("ExtraNav")
         self.TweetsNavController = storyBoard.instantiateViewControllerWithIdentifier("TweetsNavController")
         
         MenuViewControllers.append(self.ProfileNavController)
         MenuViewControllers.append(self.TweetsNavController)
         MenuViewControllers.append(self.TweetsNavController)
+        MenuViewControllers.append(self.ExtraNavController)
         
         hamburgerViewController.contentViewController = MenuViewControllers[0]
     }

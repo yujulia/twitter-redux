@@ -52,6 +52,8 @@ class HamburgerViewController: UIViewController {
                 oldContentViewController.didMoveToParentViewController(nil)
             }
             
+            print("trying to set content");
+            
             self.contentViewController.willMoveToParentViewController(self)
             self.contentView.addSubview(self.contentViewController.view)
             self.contentViewController.didMoveToParentViewController(self)
