@@ -20,6 +20,7 @@ class Tweet: NSObject {
     var retweeted: Bool?
     var favorited: Bool?
     var id: NSNumber?
+    var user: User?
     
     // -------------------------------------- 
     
@@ -44,6 +45,16 @@ class Tweet: NSObject {
         if let profileImageURL = profileImageURLStr {
             self.profileImageURL = NSURL(string: profileImageURL)
         }
+        
+        if let tweeter = tweetData["user"] {
+            let tweetUser = User.init(userData: tweeter as! NSDictionary)
+            self.user = tweetUser
+            
+            print("got back user")
+            print(self.user?.name)
+            print(self.user?.screenName)
+        }
+        
     }
     
     // --------------------------------------

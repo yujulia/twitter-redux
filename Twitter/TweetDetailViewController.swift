@@ -143,6 +143,11 @@ class TweetDetailViewController: UIViewController {
             let composeViewController = segue.destinationViewController as! ComposeViewController
             composeViewController.replyToTweet = self.data
         }
+        
+        if segue.identifier == "ProfileSegue" {
+            let profileViewController = segue.destinationViewController as! ProfileViewController
+            profileViewController.user = self.data?.user
+        }
     }
     
     // -------------------------------------- update the counts
@@ -159,6 +164,9 @@ class TweetDetailViewController: UIViewController {
         }
     }
     
+    @IBAction func onTapProfile(sender: AnyObject) {
+        self.performSegueWithIdentifier("ProfileSegue", sender: nil)
+    }
     // -------------------------------------- retweet
 
     @IBAction func onRetweet(sender: AnyObject) {

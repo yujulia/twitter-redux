@@ -12,16 +12,17 @@ class ProfileViewController: UIViewController {
 
     @IBOutlet weak var profileBackgroundImage: UIImageView!
     @IBOutlet weak var profileImage: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var profileName: UILabel!
+    
     @IBOutlet weak var screenNameLabel: UILabel!
     
     @IBOutlet weak var followingCountLabel: UILabel!
     @IBOutlet weak var followersCountLabel: UILabel!
     @IBOutlet weak var tweetsCountLabel: UILabel!
     
-    
-    var data: User? {
+    var user: User? {
         didSet {
+            self.view.layoutIfNeeded()
             self.setDataAsProperty()
         }
     }
@@ -29,8 +30,8 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if self.data == nil {
-            self.data = State.currentUser
+        if self.user == nil {
+            self.user = State.currentUser
             self.setDataAsProperty()
         }
         
@@ -43,11 +44,13 @@ class ProfileViewController: UIViewController {
     // --------------------------------------
     
     private func setDataAsProperty() {
-        if let data = self.data {
-            if let name = data.name as? String {
-                self.nameLabel.text = name
-            }
+
+        if let data = self.user {
             
+            if let userName = data.name as? String {
+                self.profileName.text = userName
+            }
+
             if let screenName = data.screenName as? String {
                 self.screenNameLabel.text = "@" + screenName
             }
@@ -65,7 +68,6 @@ class ProfileViewController: UIViewController {
             }
             
             if let userImageURL = data.profileImageURL {
-                print("url", userImageURL)
                 ImageLoader.loadImage(
                     userImageURL,
                     imageview: self.profileImage,
@@ -85,11 +87,6 @@ class ProfileViewController: UIViewController {
         }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
 
     @IBAction func onHamburgerToggle(sender: AnyObject) {
         NSNotificationCenter.defaultCenter().postNotificationName(HAMBURGER_TOGGLE_EVENT, object: nil)

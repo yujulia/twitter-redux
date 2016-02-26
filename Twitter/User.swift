@@ -25,8 +25,6 @@ class User: NSObject {
     
     init(userData: NSDictionary) {
         
-        print(userData)
-        
         self.userData = userData
         self.name = userData["name"] as? String
         self.screenName = userData["screen_name"] as? String

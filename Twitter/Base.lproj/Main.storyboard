@@ -188,8 +188,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="177.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default" translatesAutoresizingMaskIntoConstraints="NO" id="y64-Ho-Ldo">
+                                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default" translatesAutoresizingMaskIntoConstraints="NO" id="y64-Ho-Ldo">
                                                     <rect key="frame" x="10" y="51" width="50" height="50"/>
+                                                    <gestureRecognizers/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="9tT-gC-qwL"/>
                                                         <constraint firstAttribute="width" constant="50" id="VIg-Lk-0Vh"/>
@@ -201,7 +202,7 @@
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="19" id="eeF-Fe-7he"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@screenname" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2X6-C9-VI3">
@@ -385,17 +386,21 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vwy-NV-P9z">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default" translatesAutoresizingMaskIntoConstraints="NO" id="0IQ-vL-ANE">
+                                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default" translatesAutoresizingMaskIntoConstraints="NO" id="0IQ-vL-ANE">
                                                 <rect key="frame" x="15" y="71" width="50" height="50"/>
+                                                <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="7cU-27-gbW"/>
                                                     <constraint firstAttribute="height" constant="50" id="JaA-0y-3D7"/>
                                                 </constraints>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="HcM-AQ-FpB" appends="YES" id="qhw-6E-zcL"/>
+                                                </connections>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uB6-eE-fM8">
                                                 <rect key="frame" x="75" y="71" width="40.5" height="18"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@screenname" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WBs-yl-lNa">
@@ -580,9 +585,15 @@
                         <outlet property="tweetScreenName" destination="WBs-yl-lNa" id="rgp-kB-6rc"/>
                         <outlet property="tweetTextLabel" destination="Qva-Ly-FV2" id="69M-Gf-Zat"/>
                         <outlet property="tweetTime" destination="KzL-rh-zPo" id="tY8-gp-BsU"/>
+                        <segue destination="i2k-Tx-TEv" kind="push" identifier="ProfileSegue" id="vdk-AP-T94"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EKG-17-kcj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="HcM-AQ-FpB">
+                    <connections>
+                        <action selector="onTapProfile:" destination="X4n-UX-8nd" id="lJa-M6-0pe"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1359" y="299"/>
         </scene>
@@ -779,13 +790,13 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="user name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WPU-Rb-f9w">
                                 <rect key="frame" x="140" y="160" width="76.5" height="18"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@screenname" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kbT-32-FlT">
                                 <rect key="frame" x="140" y="179" width="86" height="16"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TWEETS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nq5-uZ-11P">
@@ -884,16 +895,16 @@
                     <connections>
                         <outlet property="followersCountLabel" destination="RFQ-eD-7XP" id="dzq-Wj-HYC"/>
                         <outlet property="followingCountLabel" destination="tAc-td-dGG" id="7OG-5e-vaS"/>
-                        <outlet property="nameLabel" destination="WPU-Rb-f9w" id="5hU-UP-Htk"/>
                         <outlet property="profileBackgroundImage" destination="H5F-Ol-Zv3" id="jGb-ob-HDR"/>
                         <outlet property="profileImage" destination="ZbY-2u-MRA" id="C5d-6F-Ggi"/>
+                        <outlet property="profileName" destination="WPU-Rb-f9w" id="azq-bC-QH6"/>
                         <outlet property="screenNameLabel" destination="kbT-32-FlT" id="NRT-zy-6aL"/>
                         <outlet property="tweetsCountLabel" destination="BEv-o0-O2j" id="RjY-FR-r5p"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tiq-Pj-YsK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="951" y="-359"/>
+            <point key="canvasLocation" x="1359" y="-437"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="NrT-Fo-kwY">
@@ -923,6 +934,7 @@
             <objects>
                 <navigationController storyboardIdentifier="ProfileNavController" automaticallyAdjustsScrollViewInsets="NO" id="8vw-rN-Scx" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="7C1-hG-Gq0"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="tXL-UL-EOg">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -938,7 +950,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F0K-38-F4Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="541" y="-359"/>
+            <point key="canvasLocation" x="949" y="-437"/>
         </scene>
     </scenes>
     <resources>
@@ -958,7 +970,8 @@
         <image name="write" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="l3l-Zs-sYR"/>
+        <segue reference="ypb-gJ-NDf"/>
+        <segue reference="vdk-AP-T94"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>
