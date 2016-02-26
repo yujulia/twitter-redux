@@ -176,6 +176,12 @@ class TweetCell: UITableViewCell {
     
     // --------------------------------------
 
+    @IBAction func onProfileTap(sender: AnyObject) {
+        // TODO --
+    }
+    
+    // --------------------------------------
+
     @IBAction func onFavorite(sender: AnyObject) {
         if self.favorited {
             

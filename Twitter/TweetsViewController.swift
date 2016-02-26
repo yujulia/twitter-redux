@@ -125,6 +125,10 @@ class TweetsViewController: UIViewController, UITableViewDataSource {
         }
     }
     
+    @IBAction func onProfileTapped(sender: AnyObject) {
+        self.performSegueWithIdentifier("TimelineProfileSegue", sender: nil)
+    }
+    
     // -------------------------------------- segue
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -146,6 +150,9 @@ class TweetsViewController: UIViewController, UITableViewDataSource {
                 let currentCellData = State.homeTweets?[indexPath!.row]
                 composeViewController.replyToTweet = currentCellData
             }
+        }
+        if segue.identifier == "TimelineProfileSegue" {
+            print(sender)
         }
     }
 }

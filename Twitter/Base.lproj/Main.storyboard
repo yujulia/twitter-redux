@@ -280,6 +280,13 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dwO-zr-AR8">
+                                                    <rect key="frame" x="10" y="51" width="50" height="50"/>
+                                                    <color key="backgroundColor" red="0.61049312357377139" green="1" blue="0.66169598116161021" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <connections>
+                                                        <action selector="onProfileTap:" destination="ehc-CM-qFh" eventType="touchUpInside" id="0I6-a1-s8q"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="2X6-C9-VI3" firstAttribute="centerY" secondItem="G9D-Vf-lDs" secondAttribute="centerY" id="3QD-Vv-O5f"/>
@@ -825,7 +832,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FOLLOWING" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xaq-KR-8Te">
-                                <rect key="frame" x="234" y="260.5" width="66" height="13.5"/>
+                                <rect key="frame" x="234" y="260" width="66" height="13.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -1007,7 +1014,7 @@
         <image name="write" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ypb-gJ-NDf"/>
+        <segue reference="l3l-Zs-sYR"/>
         <segue reference="qXt-uh-RGA"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
