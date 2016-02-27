@@ -170,7 +170,6 @@ class TweetDetailViewController: UIViewController {
             profileViewController.user = self.data?.user
             self.navigationController?.pushViewController(profileViewController, animated: true)
         }
-        
     }
     // -------------------------------------- retweet
 

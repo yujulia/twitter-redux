@@ -13,13 +13,10 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var profileBackgroundImage: UIImageView!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var profileName: UILabel!
-    
     @IBOutlet weak var screenNameLabel: UILabel!
-    
     @IBOutlet weak var followingCountLabel: UILabel!
     @IBOutlet weak var followersCountLabel: UILabel!
     @IBOutlet weak var tweetsCountLabel: UILabel!
-    @IBOutlet weak var closeButton: UIButton!
     
     var user: User? {
         didSet {

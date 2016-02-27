@@ -147,18 +147,10 @@ extension MenuViewController: UITableViewDelegate {
 
         if let nav = selectedController as? UINavigationController {
             let firstChildController = nav.viewControllers[0]
-//            self.hamburgerViewController.delegate = firstChildController as? HamburgerViewControllerDelegate
             self.delegate = firstChildController as? MenuViewControllerDelegate
         }
         
-        if indexPath.row == 0 {
-            let profileVC = selectedController as! ProfileViewController
-            profileVC.showX = false
-        }
-
-//        self.hamburgerViewController.endpoint = self.TimelineEndpoints[indexPath.row]
         self.hamburgerViewController.contentViewController = selectedController
-    
         self.delegate?.menuViewController?(self, didSetContentOnHamburger: selectedController, endpoint: self.TimelineEndpoints[indexPath.row].rawValue)
     }
     

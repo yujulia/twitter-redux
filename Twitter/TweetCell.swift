@@ -38,14 +38,14 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var tweetName: UILabel!
     @IBOutlet weak var tweetScreenName: UILabel!
     @IBOutlet weak var tweetTime: UILabel!
-    
     @IBOutlet weak var replyButton: UIButton!
     @IBOutlet weak var retweetButton: UIButton!
     @IBOutlet weak var favoriteButton: UIButton!
-    
     @IBOutlet weak var retweetIcon: UIImageView!
     @IBOutlet weak var retweetLabel: UILabel!
     @IBOutlet weak var retweetTopConstraint: NSLayoutConstraint!
+    
+    let client = TwitterClient.sharedInstance
     
     weak var delegate: TweetCellDelegate?
     
@@ -128,7 +128,7 @@ class TweetCell: UITableViewCell {
         self.retweetLabel.text = "\(retweetedBy) Retweeted"
     }
     
-    // --------------------------------------
+    // -------------------------------------- load profile image
     
     private func loadProfileImage(profileImageURL: NSURL) {
         self.profileImage.alpha = 0
@@ -137,18 +137,26 @@ class TweetCell: UITableViewCell {
             profileImageURL,
             imageview: self.profileImage,
             success: { () -> () in
-                UIView.animateWithDuration(0.3,
-                    animations:  {() in
-                        self.profileImage.alpha = 1
-                        let imageTapGestureRecognizer = UITapGestureRecognizer(target: self, action: "onProfileImageTap:")
-                        self.profileImage.addGestureRecognizer(imageTapGestureRecognizer)
-                    }
-                )
+                self.onProfileImageLoaded()
             },
             failure: { (error: NSError) -> () in
-                self.profileImage.image = UIImage(named: "default")
-                print("image load failure for profileImageURL: ", error.localizedDescription)
+                self.onProfileImageErred(error.localizedDescription)
+            }
+        )
+    }
+    
+    private func onProfileImageErred(error: String) {
+        print("image load failure for profileImageURL: ", error)
+        self.profileImage.image = UIImage(named: "default")
+        self.profileImage.alpha = 1
+    }
+    
+    private func onProfileImageLoaded() {
+        UIView.animateWithDuration(0.3,
+            animations:  {() in
                 self.profileImage.alpha = 1
+                let imageTapGestureRecognizer = UITapGestureRecognizer(target: self, action: "onProfileImageTap:")
+                self.profileImage.addGestureRecognizer(imageTapGestureRecognizer)
             }
         )
     }
@@ -167,7 +175,7 @@ class TweetCell: UITableViewCell {
     @IBAction func onRetweet(sender: AnyObject) {
         if self.retweeted {
             
-            TwitterClient.sharedInstance.unRetweet(
+            client.unRetweet(
                 self.data!.id!,
                 success: { (returnedTweet: Tweet) -> () in
                     print("un retweet returned", returnedTweet)
@@ -176,11 +184,9 @@ class TweetCell: UITableViewCell {
             })
             
         } else {
-            TwitterClient.sharedInstance.retweet(
+            client.retweet(
                 self.data!.id!,
                 success: { (returnedTweet: Tweet) -> () in
-
-                    print("retweet returned", returnedTweet)
                     self.retweetButton.selected = true
                     self.retweeted = true
             })
@@ -191,29 +197,22 @@ class TweetCell: UITableViewCell {
 
     @IBAction func onFavorite(sender: AnyObject) {
         if self.favorited {
-            
-            TwitterClient.sharedInstance.removeFavorite(
+            client.removeFavorite(
                 self.data!.id!,
                 success: { () -> () in
-                    print("yeah removed favorited")
                     self.favoriteButton.selected = false
                     self.favorited = false
                     self.data?.favorites--
             })
-            
         } else {
-            
-            TwitterClient.sharedInstance.addFavorite(
+            client.addFavorite(
                 self.data!.id!,
                 success: { () -> () in
-                    print("yeah favorited")
                     self.favoriteButton.selected = true
                     self.favorited = true
                     self.data?.favorites++
             })
-            
         }
-        
     }
     
     // --------------------------------------

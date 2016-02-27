@@ -17,11 +17,13 @@ class TweetsViewController: UIViewController, UITableViewDataSource {
     let RESPONSE_LIMIT = 20
     let client = TwitterClient.sharedInstance
     let refreshControl = UIRefreshControl()
+    let storyBoard = UIStoryboard(name: "Main", bundle: nil)
     
     private var loading: Bool = false
     private var hud: MBProgressHUD?
     
     var endpoint = TwitterClient.Timelines.Mentions
+    var profileViewController: ProfileViewController?
     
     // --------------------------------------
     
@@ -29,6 +31,8 @@ class TweetsViewController: UIViewController, UITableViewDataSource {
         super.viewDidLoad()
         self.setupTable()
         self.setupRefresh()
+        
+        self.profileViewController = storyBoard.instantiateViewControllerWithIdentifier("ProfileViewController") as? ProfileViewController
     }
 
     // -------------------------------------- load the timeline
@@ -217,17 +221,30 @@ extension TweetsViewController: UITableViewDelegate {
 
 extension TweetsViewController: TweetCellDelegate {
     
+    // -------------------------------------- show compose view
+    
     func tweetCell(tweetCell: TweetCell, didWantToReply value: TweetCell) {
         self.performSegueWithIdentifier("ComposeSegue", sender: value)
     }
     
+    // -------------------------------------- show profile view
+    
     func tweetCell(tweetCell: TweetCell, didWantToShowProfile value: User) {
-        self.performSegueWithIdentifier("ProfileSegue", sender: value)
+        
+        if let profileViewController = self.profileViewController {
+            profileViewController.user = value
+            self.navigationController?.pushViewController(profileViewController, animated: true)
+        }
+        
     }
 }
 
 // tweet detail delegate
+
 extension TweetsViewController: TweetDetailViewControllerDelegate {
+    
+    // -------------------------------------- do retweet stuf... not implemented
+    
     func tweetDetailViewController(tweetDetailViewController: TweetDetailViewController, didRetweet value: Tweet) {
         print("retweeted got info from detail but i guess i'll do nothing...")
 
@@ -237,6 +254,8 @@ extension TweetsViewController: TweetDetailViewControllerDelegate {
 // compose delegate
 
 extension TweetsViewController: ComposeViewControllerDelegate {
+    
+    // -------------------------------------- compose tweeted, add the new tweet
     
     func composeViewController(composeViewController: ComposeViewController, didTweet value: Tweet) {
         
@@ -248,26 +267,13 @@ extension TweetsViewController: ComposeViewControllerDelegate {
     }
 }
 
-// hamburger delegate
-
-//extension TweetsViewController: HamburgerViewControllerDelegate {
-//    
-//    func hamburgerViewController(hamburgerViewController: HamburgerViewController, didSetEndpoint value: Int) {
-//
-//        if let endpointType = TwitterClient.Timelines(rawValue: value) {
-//            self.endpoint = endpointType
-//            self.setTitle()
-//            self.loadTimeline(nil)
-//        }
-//    }
-//}
-
 // menu delegate
 
 extension TweetsViewController: MenuViewControllerDelegate {
+    
+    // -------------------------------------- content was set on hamburger callback
+    
     func menuViewController(menuViewController: MenuViewController, didSetContentOnHamburger value: UIViewController, endpoint: Int) {
-        
-        print("content was set on hamburger", endpoint)
         
         if let endpointType = TwitterClient.Timelines(rawValue: endpoint) {
             self.endpoint = endpointType
