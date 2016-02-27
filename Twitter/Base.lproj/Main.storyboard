@@ -157,6 +157,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="tableHeightConstraint" destination="Hlt-MZ-JiB" id="A2T-5u-smZ"/>
                         <outlet property="tableView" destination="O4d-Yy-AJf" id="CzH-dz-kX6"/>
                     </connections>
                 </viewController>

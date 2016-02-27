@@ -13,6 +13,7 @@ private let ESTIMATE_ROW_HEIGHT: CGFloat = 60
 class AccountsViewController: UIViewController, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableHeightConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +21,6 @@ class AccountsViewController: UIViewController, UITableViewDataSource {
 
     }
 }
-
 
 extension AccountsViewController: UITableViewDelegate {
     
@@ -32,6 +32,10 @@ extension AccountsViewController: UITableViewDelegate {
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = ESTIMATE_ROW_HEIGHT
         self.tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0)
+        if let userCount = State.users?.count {
+            self.tableHeightConstraint.constant = CGFloat(userCount * 60)
+        }
+        
     }
     
     // --------------------------------------

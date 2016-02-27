@@ -63,7 +63,7 @@ class MenuViewController: UIViewController, UITableViewDataSource {
         
         if let user = State.currentUser {
             
-            if let name = user.screenName as? String {
+            if let name = user.screenName {
                 self.profileName.text = "@" + name
             }
             

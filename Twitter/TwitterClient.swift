@@ -91,6 +91,10 @@ class TwitterClient: BDBOAuth1SessionManager {
                         { (user: User) -> () in
                             print("client got credentials")
                             State.currentUser = user
+                            if let screenName = user.screenName {
+                                let userDict: [String: User] = [screenName: user]
+                                State.users?.append(userDict)
+                            }
                             self.loginSuccess?("ok")
                         },
                         failure: { (error: NSError) -> () in

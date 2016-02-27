@@ -45,11 +45,11 @@ class ProfileViewController: UIViewController {
 
         if let data = self.user {
             
-            if let userName = data.name as? String {
+            if let userName = data.name {
                 self.profileName.text = userName
             }
 
-            if let screenName = data.screenName as? String {
+            if let screenName = data.screenName {
                 self.screenNameLabel.text = "@" + screenName
             }
             

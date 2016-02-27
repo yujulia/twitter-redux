@@ -10,9 +10,9 @@ import UIKit
 
 class Tweet: NSObject {
     
-    var name: NSString?
-    var screenName: NSString?
-    var text: NSString?
+    var name: String?
+    var screenName: String?
+    var text: String?
     var timestamp: NSDate?
     var retweets: Int = 0
     var favorites: Int = 0

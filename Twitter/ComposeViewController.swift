@@ -44,7 +44,7 @@ class ComposeViewController: UIViewController {
     func setupReply() {
         if replyToTweet != nil {
             self.replying = true
-            self.textBox.text = "@\(replyToTweet?.screenName as! String) "
+            self.textBox.text = "@\(replyToTweet?.screenName) "
         }
     }
     
