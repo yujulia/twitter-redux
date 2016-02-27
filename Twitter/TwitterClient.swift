@@ -43,7 +43,6 @@ class TwitterClient: BDBOAuth1SessionManager {
     // ----------------------------------------- logout
     
     func logout() {
-        print("client logout about to happen")
         State.currentUser = nil
         self.deauthorize()
         NSNotificationCenter.defaultCenter().postNotificationName(LOGOUT_EVENT, object: nil)

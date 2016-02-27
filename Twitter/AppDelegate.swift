@@ -24,10 +24,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if State.currentUser != nil {
             print("user already logged in")
             self.setRootAsHamburger()
-            self.ObserveUserLogout()
         } else {
             print("no user")
         }
+        
+        self.ObserveUserLogout()
         
         return true
     }
@@ -35,6 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // --------------------------------------
     
     private func ObserveUserLogout() {
+        print("observing user logout")
         NSNotificationCenter.defaultCenter().addObserverForName(LOGOUT_EVENT, object: nil, queue: NSOperationQueue.mainQueue()) { (note: NSNotification) -> Void in
             print("user wants to log out")
             self.logOutUser()
