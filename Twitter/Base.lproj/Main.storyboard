@@ -788,6 +788,7 @@
                         <outlet property="profileImage" destination="Hht-Ns-Eme" id="wfG-Ux-4Bj"/>
                         <outlet property="profileName" destination="xPX-qs-GgU" id="Txa-Lz-lGE"/>
                         <outlet property="tableView" destination="J1o-Me-A6n" id="m1b-Rq-Cqu"/>
+                        <segue destination="bKA-06-udX" kind="modal" identifier="AccountsSegue" modalTransitionStyle="crossDissolve" id="GRi-ph-Qtr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NxV-la-6gs" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -802,7 +803,7 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="84" y="-769"/>
+            <point key="canvasLocation" x="84" y="603"/>
         </scene>
         <!--Hamburger View Controller-->
         <scene sceneID="e72-zG-16z">

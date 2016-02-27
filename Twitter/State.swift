@@ -10,17 +10,54 @@ import Foundation
 import UIKit
 
 private let CURRENT_USER_KEY: String = "currentUser"
+private let USERS_KEY: String = "users"
+
 
 class State: NSObject {
     
     static var _currentUser: User?
-    static var users: [[String: User]]?
+    static var users: [User] = []
+    
     static var currentTweet: Tweet?
     static var timelineTweets: [Tweet]?
     static var lastBatchCount: Int = 0
     static var currentHomeTweetCount: Int = 0
     
     static var storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+    static var store = NSUserDefaults.standardUserDefaults()
+    
+    // -------------------------------------- copy current users to userdefaults
+    
+    class func storeUsers() {
+        var storeArray: [NSDictionary] = []
+        
+        for aUser in self.users {
+            if let data = aUser.userData {
+                storeArray.append(data)
+            }
+        }
+        
+        let userDataJSON = try! NSJSONSerialization.dataWithJSONObject(storeArray, options: [])
+        
+        store.setObject(userDataJSON, forKey: USERS_KEY)
+        store.synchronize()
+    }
+    
+    // -------------------------------------- get users out of user defaults
+    
+    class func getUsersFromStore() {
+        
+        if let usersJSON = store.objectForKey(USERS_KEY) as? NSData {
+            let usersArray = try! NSJSONSerialization.JSONObjectWithData(usersJSON, options: []) as! NSArray
+            for existingUser in usersArray {
+                let userObj = User(userData: existingUser as! NSDictionary)
+                self.users.append(userObj)
+            }
+        }
+        
+        print("got from user store", self.users)
+        
+    }
     
     // -------------------------------------- get and set currentUser of the app
     
@@ -28,7 +65,7 @@ class State: NSObject {
         get {
             // no user cached, search the store
         
-            if _currentUser == nil {
+            if self._currentUser == nil {
             
             let store = NSUserDefaults.standardUserDefaults()
             let userDataJSON = store.objectForKey(CURRENT_USER_KEY) as? NSData
@@ -47,15 +84,13 @@ class State: NSObject {
         // set the user
         
         set(user) {
-            let store = NSUserDefaults.standardUserDefaults()
-            
             if let user = user {
                 let userDataJSON = try! NSJSONSerialization.dataWithJSONObject(user.userData!, options: [])
-                store.setObject(userDataJSON, forKey: CURRENT_USER_KEY)
+                self.store.setObject(userDataJSON, forKey: CURRENT_USER_KEY)
             } else {
-                store.setObject(nil, forKey: CURRENT_USER_KEY)
+                self.store.setObject(nil, forKey: CURRENT_USER_KEY)
             }
-            store.synchronize()
+            self.store.synchronize()
         }
     }
     

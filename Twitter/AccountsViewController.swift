@@ -32,22 +32,18 @@ extension AccountsViewController: UITableViewDelegate {
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = ESTIMATE_ROW_HEIGHT
         self.tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0)
-        if let userCount = State.users?.count {
-            self.tableHeightConstraint.constant = CGFloat(userCount * 60)
+      
+        if State.users.count > 0 {
+            self.tableHeightConstraint.constant = CGFloat(State.users.count * 60)
+        } else {
+            self.tableHeightConstraint.constant = 0
         }
-        
     }
     
     // --------------------------------------
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let userCount = State.users?.count {
-            print("user count", userCount)
-            return userCount
-        } else {
-            print("no users count")
-            return 0
-        }
+        return State.users.count
     }
     
     // --------------------------------------
@@ -55,7 +51,17 @@ extension AccountsViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("AccountCell", forIndexPath: indexPath) as! AccountCell
+        cell.user = State.users[indexPath.row]
         
         return cell
     }
+    
+    // --------------------------------------
+    
+    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        print("row selected")
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    
 }

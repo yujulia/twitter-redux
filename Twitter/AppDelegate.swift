@@ -20,6 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         print("app launch")
         
+        State.getUsersFromStore()
+        
         if State.currentUser != nil {
             print("user already logged in")
             self.setRootAsHamburger()

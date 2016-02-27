@@ -99,7 +99,6 @@ class MenuViewController: UIViewController, UITableViewDataSource {
         MenuViewControllers.append(self.ExtraNavController)
         
         self.setDefaultContentViewAs(1)
-        
     }
     
     // --------------------------------------
@@ -108,7 +107,7 @@ class MenuViewController: UIViewController, UITableViewDataSource {
         
         let state = sender.state
         if state == UIGestureRecognizerState.Ended {
-            print("long press ended")
+            self.performSegueWithIdentifier("AccountsSegue", sender: nil)
         }
     }
     
