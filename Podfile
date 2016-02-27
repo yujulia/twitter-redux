@@ -9,6 +9,7 @@ pod 'AFNetworking', '3.0.0'
 pod 'BDBOAuth1Manager', '2.0.0'
 pod 'MBProgressHUD'
 pod 'TimeAgoInWords', '2.0.0'
+pod 'KeychainSwift', '3.0.11'
 
 end
 

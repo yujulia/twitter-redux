@@ -86,12 +86,14 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-Twitter/AFNetworking.framework"
   install_framework "Pods-Twitter/BDBOAuth1Manager.framework"
+  install_framework "Pods-Twitter/KeychainSwift.framework"
   install_framework "Pods-Twitter/MBProgressHUD.framework"
   install_framework "Pods-Twitter/TimeAgoInWords.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-Twitter/AFNetworking.framework"
   install_framework "Pods-Twitter/BDBOAuth1Manager.framework"
+  install_framework "Pods-Twitter/KeychainSwift.framework"
   install_framework "Pods-Twitter/MBProgressHUD.framework"
   install_framework "Pods-Twitter/TimeAgoInWords.framework"
 fi

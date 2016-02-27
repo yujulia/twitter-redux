@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>KeychainSwift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>MBProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -37,17 +42,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1D794BDBF1C85A70994E82D550EDBC39</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>445B3D47256376A8FB06D383FDBEA0C4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>97D758D07049B47651F62B27D844A3AD</key>
+		<key>4C698C648EE4D43C6B8BE0BE1FE91737</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>907ED342F8E64E8DEEDF854C5CEF4429</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>976B632714DCC5FACB2AC326BBDD07BC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
