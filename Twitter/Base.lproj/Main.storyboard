@@ -359,7 +359,7 @@
             </objects>
             <point key="canvasLocation" x="951" y="299"/>
         </scene>
-        <!--Tweet Detail View Controller-->
+        <!--Tweet-->
         <scene sceneID="9dV-F1-swD">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="X4n-UX-8nd" customClass="TweetDetailViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
@@ -553,7 +553,7 @@
                             <constraint firstItem="fmS-ri-ZLZ" firstAttribute="top" secondItem="n1m-Jl-KsM" secondAttribute="bottom" id="vMi-1S-rXb"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="pSY-wR-4PZ">
+                    <navigationItem key="navigationItem" title="Tweet" id="pSY-wR-4PZ">
                         <barButtonItem key="rightBarButtonItem" image="quill" id="Fpy-Yw-4Td">
                             <connections>
                                 <segue destination="Y70-oQ-fN0" kind="modal" identifier="ComposeSegue" id="cXc-6p-SZJ"/>

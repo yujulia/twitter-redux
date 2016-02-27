@@ -21,7 +21,6 @@ class MenuViewController: UIViewController, UITableViewDataSource {
     let ESTIMATE_ROW_HEIGHT: CGFloat = 120.0
     
     private var MenuViewControllers: [UIViewController] = []
-//    private var ProfileNavController: UIViewController!
     private var ProfileController: UIViewController!
     private var TweetsNavController: UIViewController!
     private var ExtraNavController: UIViewController!
@@ -88,13 +87,10 @@ class MenuViewController: UIViewController, UITableViewDataSource {
     private func getMenuViewControllers() {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         
-//        self.ProfileNavController = storyBoard.instantiateViewControllerWithIdentifier("ProfileNavController")
-        
         self.ProfileController = storyBoard.instantiateViewControllerWithIdentifier("ProfileViewController")
         self.ExtraNavController = storyBoard.instantiateViewControllerWithIdentifier("ExtraNav")
         self.TweetsNavController = storyBoard.instantiateViewControllerWithIdentifier("TweetsNavController")
         
-//        MenuViewControllers.append(self.ProfileNavController)
         MenuViewControllers.append(self.ProfileController)
         MenuViewControllers.append(self.TweetsNavController)
         MenuViewControllers.append(self.TweetsNavController)
