@@ -13,8 +13,9 @@ private let CURRENT_USER_KEY: String = "currentUser"
 class State: NSObject {
     
     static var _currentUser: User?
+    static var users: [User]?
     static var currentTweet: Tweet?
-    static var homeTweets: [Tweet]?
+    static var timelineTweets: [Tweet]?
     static var lastBatchCount: Int = 0
     static var currentHomeTweetCount: Int = 0
 

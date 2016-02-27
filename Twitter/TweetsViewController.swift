@@ -143,7 +143,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource {
         if segue.identifier == "TweetDetailSegue" {
             let detailViewController = segue.destinationViewController as! TweetDetailViewController
             let indexPath = tableView.indexPathForCell(sender as! UITableViewCell)
-            let currentCellData = State.homeTweets?[indexPath!.row]
+            let currentCellData = State.timelineTweets?[indexPath!.row]
             
             detailViewController.delegate = self
             detailViewController.data = currentCellData
@@ -155,7 +155,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource {
             
             if let cell = sender as? UITableViewCell {
                 let indexPath = tableView.indexPathForCell(cell)
-                let currentCellData = State.homeTweets?[indexPath!.row]
+                let currentCellData = State.timelineTweets?[indexPath!.row]
                 composeViewController.replyToTweet = currentCellData
             }
         }
@@ -187,7 +187,7 @@ extension TweetsViewController: UITableViewDelegate {
     // --------------------------------------
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let tweets = State.homeTweets {
+        if let tweets = State.timelineTweets {
             return tweets.count
         } else {
             return 0
@@ -200,14 +200,14 @@ extension TweetsViewController: UITableViewDelegate {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("TweetCell", forIndexPath: indexPath) as! TweetCell
         
-        if let cellData = State.homeTweets?[indexPath.row] {
+        if let cellData = State.timelineTweets?[indexPath.row] {
             cell.data = cellData
         }
 
         cell.delegate = self
         
-        if indexPath.row >= State.homeTweets!.count-1 {
-            if let cellData = State.homeTweets?[indexPath.row] {
+        if indexPath.row >= State.timelineTweets!.count-1 {
+            if let cellData = State.timelineTweets?[indexPath.row] {
                 self.loadTimeline(cellData.id!)
             }
         }
@@ -259,7 +259,7 @@ extension TweetsViewController: ComposeViewControllerDelegate {
     
     func composeViewController(composeViewController: ComposeViewController, didTweet value: Tweet) {
         
-        State.homeTweets?.insert(value, atIndex: 0)
+        State.timelineTweets?.insert(value, atIndex: 0)
         
         self.tableView.beginUpdates()
         self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Fade)

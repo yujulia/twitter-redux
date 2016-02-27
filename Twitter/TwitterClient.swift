@@ -163,12 +163,12 @@ class TwitterClient: BDBOAuth1SessionManager {
                     State.lastBatchCount = tweets.count
                     
                     if last_id != nil {
-                        State.homeTweets?.appendContentsOf(tweets)
+                        State.timelineTweets?.appendContentsOf(tweets)
                     } else {
-                        State.homeTweets = tweets
+                        State.timelineTweets = tweets
                     }
                     
-                    State.currentHomeTweetCount = State.homeTweets?.count ?? 0
+                    State.currentHomeTweetCount = State.timelineTweets?.count ?? 0
                     
                     success()
                 }
