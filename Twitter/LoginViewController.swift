@@ -14,6 +14,8 @@ class LoginViewController: UIViewController {
     let client = TwitterClient.sharedInstance
     let storyBoard = UIStoryboard(name: "Main", bundle: nil)
     var window: UIWindow?
+    
+    // --------------------------------------
 
     override func viewDidLoad() {
         super.viewDidLoad()

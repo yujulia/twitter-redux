@@ -8,9 +8,9 @@
 
 import UIKit
 
-@objc protocol HamburgerViewControllerDelegate {
-    optional func hamburgerViewController(hamburgerViewController: HamburgerViewController, didSetEndpoint value: Int)
-}
+//@objc protocol HamburgerViewControllerDelegate {
+//    optional func hamburgerViewController(hamburgerViewController: HamburgerViewController, didSetEndpoint value: Int)
+//}
 
 class HamburgerViewController: UIViewController {
     
@@ -21,7 +21,7 @@ class HamburgerViewController: UIViewController {
     private var originalLead: CGFloat! = 0
     private var open: Bool = false
     
-    var delegate: HamburgerViewControllerDelegate?
+//    var delegate: HamburgerViewControllerDelegate?
     
     var menuViewController: UIViewController! {
         didSet(oldMenuViewController) {
@@ -61,13 +61,13 @@ class HamburgerViewController: UIViewController {
         }
     }
     
-    var endpoint: TwitterClient.Timelines? {
-        didSet {
-            if let endpointIntValue = self.endpoint?.rawValue {
-                self.delegate?.hamburgerViewController?(self, didSetEndpoint: endpointIntValue)
-            }
-        }
-    }
+//    var endpoint: TwitterClient.Timelines? {
+//        didSet {
+//            if let endpointIntValue = self.endpoint?.rawValue {
+//                self.delegate?.hamburgerViewController?(self, didSetEndpoint: endpointIntValue)
+//            }
+//        }
+//    }
     
     // --------------------------------------
     

@@ -36,8 +36,6 @@ class TweetsViewController: UIViewController, UITableViewDataSource {
     private func loadTimeline(last_id: String?) {
 
         self.isLoading()
-    
-        // load our timeline
         
         client.loadTimelineOfType(
             self.endpoint,
@@ -121,7 +119,6 @@ class TweetsViewController: UIViewController, UITableViewDataSource {
     @IBAction func logoutTapped(sender: UIButton) {
         self.client.logout()
     }
-
     
     // -------------------------------------- update the title
     
@@ -147,6 +144,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource {
             detailViewController.delegate = self
             detailViewController.data = currentCellData
         }
+        
         if segue.identifier == "ComposeSegue" {
             let composeViewController = segue.destinationViewController as! ComposeViewController
             composeViewController.delegate = self
@@ -157,6 +155,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource {
                 composeViewController.replyToTweet = currentCellData
             }
         }
+        
         if segue.identifier == "ProfileSegue" {
             let profileViewController = segue.destinationViewController as! ProfileViewController
             
@@ -184,7 +183,6 @@ extension TweetsViewController: UITableViewDelegate {
     // --------------------------------------
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         if let tweets = State.homeTweets {
             return tweets.count
         } else {
@@ -255,15 +253,29 @@ extension TweetsViewController: ComposeViewControllerDelegate {
 
 // hamburger delegate
 
-extension TweetsViewController: HamburgerViewControllerDelegate {
-    
-    func hamburgerViewController(hamburgerViewController: HamburgerViewController, didSetEndpoint value: Int) {
+//extension TweetsViewController: HamburgerViewControllerDelegate {
+//    
+//    func hamburgerViewController(hamburgerViewController: HamburgerViewController, didSetEndpoint value: Int) {
+//
+//        if let endpointType = TwitterClient.Timelines(rawValue: value) {
+//            self.endpoint = endpointType
+//            self.setTitle()
+//            self.loadTimeline(nil)
+//        }
+//    }
+//}
 
-        if let endpointType = TwitterClient.Timelines(rawValue: value) {
+// menu delegate
+
+extension TweetsViewController: MenuViewControllerDelegate {
+    func menuViewController(menuViewController: MenuViewController, didSetContentOnHamburger value: UIViewController, endpoint: Int) {
+        
+        print("content was set on hamburger", endpoint)
+        
+        if let endpointType = TwitterClient.Timelines(rawValue: endpoint) {
             self.endpoint = endpointType
             self.setTitle()
             self.loadTimeline(nil)
         }
     }
-    
 }

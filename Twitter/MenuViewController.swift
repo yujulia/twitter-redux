@@ -8,6 +8,10 @@
 
 import UIKit
 
+@objc protocol MenuViewControllerDelegate {
+    optional func menuViewController(menuViewController: MenuViewController, didSetContentOnHamburger value: UIViewController, endpoint: Int)
+}
+
 class MenuViewController: UIViewController, UITableViewDataSource {
 
     @IBOutlet weak var profileName: UILabel!
@@ -42,6 +46,8 @@ class MenuViewController: UIViewController, UITableViewDataSource {
     ]
     
     var hamburgerViewController: HamburgerViewController!
+    
+    weak var delegate: MenuViewControllerDelegate?
     
     // --------------------------------------
     
@@ -95,6 +101,13 @@ class MenuViewController: UIViewController, UITableViewDataSource {
         MenuViewControllers.append(self.ExtraNavController)
         
         hamburgerViewController.contentViewController = MenuViewControllers[1]
+    
+        let navController = MenuViewControllers[1] as? UINavigationController
+        let firstChildController = navController!.topViewController as? TweetsViewController
+    
+        self.delegate = firstChildController as? MenuViewControllerDelegate
+  
+        self.delegate?.menuViewController?(self, didSetContentOnHamburger: MenuViewControllers[1], endpoint: self.TimelineEndpoints[1].rawValue)
     }
 }
 
@@ -134,7 +147,8 @@ extension MenuViewController: UITableViewDelegate {
 
         if let nav = selectedController as? UINavigationController {
             let firstChildController = nav.viewControllers[0]
-            self.hamburgerViewController.delegate = firstChildController as? HamburgerViewControllerDelegate
+//            self.hamburgerViewController.delegate = firstChildController as? HamburgerViewControllerDelegate
+            self.delegate = firstChildController as? MenuViewControllerDelegate
         }
         
         if indexPath.row == 0 {
@@ -142,8 +156,10 @@ extension MenuViewController: UITableViewDelegate {
             profileVC.showX = false
         }
 
-        self.hamburgerViewController.endpoint = self.TimelineEndpoints[indexPath.row]
+//        self.hamburgerViewController.endpoint = self.TimelineEndpoints[indexPath.row]
         self.hamburgerViewController.contentViewController = selectedController
+    
+        self.delegate?.menuViewController?(self, didSetContentOnHamburger: selectedController, endpoint: self.TimelineEndpoints[indexPath.row].rawValue)
     }
     
 }
