@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("user already logged in")
             self.setRootAsHamburger()
         } else {
-            print("no user")
+            print("user not logged in")
         }
         
         self.ObserveUserLogout()
@@ -36,7 +36,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // --------------------------------------
     
     private func ObserveUserLogout() {
-        print("observing user logout")
         NSNotificationCenter.defaultCenter().addObserverForName(LOGOUT_EVENT, object: nil, queue: NSOperationQueue.mainQueue()) { (note: NSNotification) -> Void in
             print("user wants to log out")
             self.logOutUser()
