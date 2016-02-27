@@ -13,12 +13,31 @@ private let ESTIMATE_ROW_HEIGHT: CGFloat = 60
 class AccountsViewController: UIViewController, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var tableHeightConstraint: NSLayoutConstraint!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupTable()
-
+    }
+    
+    @IBAction func onAddAccount(sender: UIButton) {
+        
+        TwitterClient.sharedInstance.logout()
+        
+//        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//        let window = appDelegate.window!
+//        
+//        let LoginViewController = State.storyBoard.instantiateInitialViewController()
+//        
+//        
+//        
+//        UIView.transitionWithView(
+//            window,
+//            duration: 0.5,
+//            options: UIViewAnimationOptions.TransitionFlipFromLeft,
+//            animations: { () -> Void in
+//                window.rootViewController = LoginViewController
+//            }, completion: nil)
     }
 }
 
@@ -32,12 +51,8 @@ extension AccountsViewController: UITableViewDelegate {
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = ESTIMATE_ROW_HEIGHT
         self.tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0)
-      
-        if State.users.count > 0 {
-            self.tableHeightConstraint.constant = CGFloat(State.users.count * 60)
-        } else {
-            self.tableHeightConstraint.constant = 0
-        }
+        self.tableView.backgroundColor = UIColor.clearColor()
+        
     }
     
     // --------------------------------------
@@ -52,13 +67,15 @@ extension AccountsViewController: UITableViewDelegate {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("AccountCell", forIndexPath: indexPath) as! AccountCell
         cell.user = State.users[indexPath.row]
+
+        cell.backgroundColor = UIColor.clearColor()
         
         return cell
     }
     
     // --------------------------------------
     
-    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         print("row selected")
         self.dismissViewControllerAnimated(true, completion: nil)
     }

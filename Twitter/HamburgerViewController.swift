@@ -20,6 +20,7 @@ class HamburgerViewController: UIViewController {
     
     private var originalLead: CGFloat! = 0
     private var open: Bool = false
+    private var accountsViewController: AccountsViewController!
     
 //    var delegate: HamburgerViewControllerDelegate?
     
@@ -61,19 +62,13 @@ class HamburgerViewController: UIViewController {
         }
     }
     
-//    var endpoint: TwitterClient.Timelines? {
-//        didSet {
-//            if let endpointIntValue = self.endpoint?.rawValue {
-//                self.delegate?.hamburgerViewController?(self, didSetEndpoint: endpointIntValue)
-//            }
-//        }
-//    }
-    
     // --------------------------------------
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupMenu()
+        
+        self.accountsViewController = State.storyBoard.instantiateViewControllerWithIdentifier("AccountsViewController") as! AccountsViewController
     }
     
     // -------------------------------------- attach menu view controller to hamburger
@@ -115,6 +110,22 @@ class HamburgerViewController: UIViewController {
                 // animation done
         })
 
+    }
+    
+    // --------------------------------------
+    
+    func presentAccounts() {
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let window = appDelegate.window!
+        
+        UIView.transitionWithView(
+            window,
+            duration: 0.5,
+            options: UIViewAnimationOptions.TransitionFlipFromLeft,
+            animations: { () -> Void in
+                window.rootViewController = self.accountsViewController
+            }, completion: nil)
     }
     
     // --------------------------------------

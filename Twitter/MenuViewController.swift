@@ -44,8 +44,7 @@ class MenuViewController: UIViewController, UITableViewDataSource {
         TwitterClient.Timelines.Nothing
     ]
     
-    var hamburgerViewController: HamburgerViewController!
-    
+    weak var hamburgerViewController: HamburgerViewController!
     weak var delegate: MenuViewControllerDelegate?
     
     // --------------------------------------
@@ -107,7 +106,7 @@ class MenuViewController: UIViewController, UITableViewDataSource {
         
         let state = sender.state
         if state == UIGestureRecognizerState.Ended {
-            self.performSegueWithIdentifier("AccountsSegue", sender: nil)
+            self.hamburgerViewController.presentAccounts()
         }
     }
     
