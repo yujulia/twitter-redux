@@ -28,13 +28,6 @@ class ProfileViewController: UIViewController {
         }
     }
     
-    var showX: Bool = true {
-        didSet {
-            self.view.layoutIfNeeded()
-            self.toggleX()
-        }
-    }
-    
     // --------------------------------------
     
     override func viewDidLoad() {
@@ -47,22 +40,6 @@ class ProfileViewController: UIViewController {
         
         self.profileImage.layer.cornerRadius = 10
         self.profileImage.clipsToBounds = true
-
-        // Do any additional setup after loading the view.
-    }
-    
-    private func toggleX() {
-        if self.showX {
-            self.closeButton.hidden = false
-        } else {
-            self.closeButton.hidden = true
-        }
-    }
-    
-    // --------------------------------------
-    
-    @IBAction func onXTap(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     // --------------------------------------
@@ -105,8 +82,9 @@ class ProfileViewController: UIViewController {
                     bannerImage,
                     imageview: self.profileBackgroundImage,
                     success: nil,
-                    failure: nil
-                    
+                    failure: { (error) -> Void in
+                        self.profileBackgroundImage.image = UIImage(named: "bg")
+                    }
                 )
             } else {
                 self.profileBackgroundImage.image = UIImage(named: "bg")

@@ -34,10 +34,12 @@ class TweetDetailViewController: UIViewController {
     @IBOutlet weak var retweetCount: UILabel!
     @IBOutlet weak var favoriteCount: UILabel!
     
+    let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+
     weak var delegate: TweetDetailViewControllerDelegate?
     
     var data: Tweet?
-    
+    var profileViewController: ProfileViewController?
     var favorited = false
     var retweeted = false
 
@@ -48,6 +50,8 @@ class TweetDetailViewController: UIViewController {
         self.hideRetweeted()
         self.scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height)
         self.setDataAsProperty()
+        
+        self.profileViewController = storyBoard.instantiateViewControllerWithIdentifier("ProfileViewController") as? ProfileViewController
     }
     
     // --------------------------------------
@@ -143,11 +147,6 @@ class TweetDetailViewController: UIViewController {
             let composeViewController = segue.destinationViewController as! ComposeViewController
             composeViewController.replyToTweet = self.data
         }
-        
-//        if segue.identifier == "ProfileSegue" {
-//            let profileViewController = segue.destinationViewController as! ProfileViewController
-//            profileViewController.user = self.data?.user
-//        }
     }
     
     // -------------------------------------- update the counts
@@ -164,24 +163,14 @@ class TweetDetailViewController: UIViewController {
         }
     }
     
+    // -------------------------------------- show profile
+    
     @IBAction func onTapProfile(sender: AnyObject) {
+        if let profileViewController = self.profileViewController {
+            profileViewController.user = self.data?.user
+            self.navigationController?.pushViewController(profileViewController, animated: true)
+        }
         
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        
-//        let profileNavigationViewController = storyBoard.instantiateViewControllerWithIdentifier("ProfileNavController") as! UINavigationController
-//        self.navigationController?.pushViewController(profileNavigationViewController, animated: true)
-        
-
-        let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("ProfileViewController") as! ProfileViewController
-        nextViewController.user = self.data?.user
-        self.navigationController?.pushViewController(nextViewController, animated: true)
-//
-////        self.navigationController?.pushViewController(nextViewController, animated: true)
-////
-//////        self.presentViewController(nextViewController, animated:true, completion:nil)
-        
-        
-//        self.performSegueWithIdentifier("ProfileSegue", sender: nil)
     }
     // -------------------------------------- retweet
 

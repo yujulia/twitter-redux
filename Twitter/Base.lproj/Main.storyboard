@@ -858,18 +858,6 @@
                                 <color key="textColor" red="0.27058823529999998" green="0.76470588240000004" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="inm-t5-VPb">
-                                <rect key="frame" x="280" y="464" width="20" height="20"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="20" id="IWh-sk-cB0"/>
-                                    <constraint firstAttribute="height" constant="20" id="sfN-b6-2hp"/>
-                                </constraints>
-                                <state key="normal" image="close"/>
-                                <connections>
-                                    <action selector="onXTap:" destination="i2k-Tx-TEv" eventType="touchUpInside" id="6M3-fr-8ET"/>
-                                    <action selector="xClick:" destination="Y70-oQ-fN0" eventType="touchUpInside" id="aqO-DC-Axx"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -888,12 +876,10 @@
                             <constraint firstAttribute="trailing" secondItem="gLj-v4-JhW" secondAttribute="trailing" id="OI0-8I-UoN"/>
                             <constraint firstItem="MXR-EU-XO9" firstAttribute="leading" secondItem="RFQ-eD-7XP" secondAttribute="leading" id="OYg-wW-uKd"/>
                             <constraint firstItem="gLj-v4-JhW" firstAttribute="top" secondItem="ZbY-2u-MRA" secondAttribute="bottom" constant="10" id="RvQ-hC-dJR"/>
-                            <constraint firstItem="dq9-Vy-tGB" firstAttribute="top" secondItem="inm-t5-VPb" secondAttribute="bottom" constant="20" id="UsI-0r-sXR"/>
                             <constraint firstItem="MXR-EU-XO9" firstAttribute="centerX" secondItem="JtM-Eu-kSR" secondAttribute="centerX" id="XD2-Ek-D4J"/>
                             <constraint firstItem="kbT-32-FlT" firstAttribute="top" secondItem="WPU-Rb-f9w" secondAttribute="bottom" constant="1" id="Y57-Ky-hTV"/>
                             <constraint firstAttribute="trailing" secondItem="FlZ-Sh-QCp" secondAttribute="trailing" id="YR5-q4-avI"/>
                             <constraint firstItem="kbT-32-FlT" firstAttribute="leading" secondItem="WPU-Rb-f9w" secondAttribute="leading" id="Zzv-Pj-KUf"/>
-                            <constraint firstAttribute="trailing" secondItem="inm-t5-VPb" secondAttribute="trailing" constant="20" id="aNH-vE-r10"/>
                             <constraint firstItem="FlZ-Sh-QCp" firstAttribute="top" secondItem="gLj-v4-JhW" secondAttribute="bottom" constant="50" id="dVN-KO-wL1"/>
                             <constraint firstItem="WPU-Rb-f9w" firstAttribute="top" secondItem="H5F-Ol-Zv3" secondAttribute="bottom" constant="10" id="g8m-C3-Qy5"/>
                             <constraint firstAttribute="trailing" secondItem="Xaq-KR-8Te" secondAttribute="trailing" constant="20" id="gih-s3-Wcn"/>
@@ -908,7 +894,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="Profile" id="lAA-Q5-ehs"/>
                     <connections>
-                        <outlet property="closeButton" destination="inm-t5-VPb" id="wX7-SQ-gLS"/>
                         <outlet property="followersCountLabel" destination="RFQ-eD-7XP" id="dzq-Wj-HYC"/>
                         <outlet property="followingCountLabel" destination="tAc-td-dGG" id="7OG-5e-vaS"/>
                         <outlet property="profileBackgroundImage" destination="H5F-Ol-Zv3" id="jGb-ob-HDR"/>
