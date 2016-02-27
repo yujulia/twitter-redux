@@ -204,9 +204,6 @@ extension TweetsViewController: UITableViewDelegate {
         
         if indexPath.row >= State.homeTweets!.count-1 {
             if let cellData = State.homeTweets?[indexPath.row] {
-                
-                print("LOAD MORE WITH", cellData.id)
-                
                 self.loadTimeline(cellData.id!)
             }
         }
