@@ -144,10 +144,10 @@ class TweetDetailViewController: UIViewController {
             composeViewController.replyToTweet = self.data
         }
         
-        if segue.identifier == "ProfileSegue" {
-            let profileViewController = segue.destinationViewController as! ProfileViewController
-            profileViewController.user = self.data?.user
-        }
+//        if segue.identifier == "ProfileSegue" {
+//            let profileViewController = segue.destinationViewController as! ProfileViewController
+//            profileViewController.user = self.data?.user
+//        }
     }
     
     // -------------------------------------- update the counts
@@ -166,18 +166,22 @@ class TweetDetailViewController: UIViewController {
     
     @IBAction func onTapProfile(sender: AnyObject) {
         
-//        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        
+//        let profileNavigationViewController = storyBoard.instantiateViewControllerWithIdentifier("ProfileNavController") as! UINavigationController
+//        self.navigationController?.pushViewController(profileNavigationViewController, animated: true)
+        
+
+        let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("ProfileViewController") as! ProfileViewController
+        nextViewController.user = self.data?.user
+        self.navigationController?.pushViewController(nextViewController, animated: true)
 //
-//        let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("ProfileViewController") as! ProfileViewController
-//        nextViewController.user = self.data?.user
-//        
-//        self.navigationController?.pushViewController(nextViewController, animated: true)
-//        
 ////        self.navigationController?.pushViewController(nextViewController, animated: true)
 ////
 //////        self.presentViewController(nextViewController, animated:true, completion:nil)
         
-        self.performSegueWithIdentifier("ProfileSegue", sender: nil)
+        
+//        self.performSegueWithIdentifier("ProfileSegue", sender: nil)
     }
     // -------------------------------------- retweet
 

@@ -906,11 +906,7 @@
                             <constraint firstItem="tAc-td-dGG" firstAttribute="centerY" secondItem="BEv-o0-O2j" secondAttribute="centerY" id="yyv-2m-jSO"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Profile" id="lAA-Q5-ehs">
-                        <barButtonItem key="leftBarButtonItem" image="hamburger" id="ufL-Jl-EYj">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Profile" id="lAA-Q5-ehs"/>
                     <connections>
                         <outlet property="closeButton" destination="inm-t5-VPb" id="wX7-SQ-gLS"/>
                         <outlet property="followersCountLabel" destination="RFQ-eD-7XP" id="dzq-Wj-HYC"/>
@@ -996,7 +992,6 @@
     <resources>
         <image name="close" width="48" height="48"/>
         <image name="default" width="400" height="400"/>
-        <image name="hamburger" width="24" height="24"/>
         <image name="like-action" width="54" height="72"/>
         <image name="like-action-on" width="54" height="72"/>
         <image name="like-action-on-pressed" width="54" height="72"/>
