@@ -19,7 +19,7 @@ class MenuViewController: UIViewController, UITableViewDataSource {
     @IBOutlet weak var tableView: UITableView!
     
     let ESTIMATE_ROW_HEIGHT: CGFloat = 120.0
-    
+
     private var MenuViewControllers: [UIViewController] = []
     private var ProfileController: UIViewController!
     private var TweetsNavController: UIViewController!
@@ -87,7 +87,7 @@ class MenuViewController: UIViewController, UITableViewDataSource {
     // -------------------------------------- get vc from storyboard and instantiate
     
     private func getMenuViewControllers() {
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let storyBoard = State.storyBoard
         
         self.ProfileController = storyBoard.instantiateViewControllerWithIdentifier("ProfileViewController")
         self.ExtraNavController = storyBoard.instantiateViewControllerWithIdentifier("ExtraNav")
@@ -100,6 +100,16 @@ class MenuViewController: UIViewController, UITableViewDataSource {
         
         self.setDefaultContentViewAs(1)
         
+    }
+    
+    // --------------------------------------
+    
+    @IBAction func onLongPress(sender: UILongPressGestureRecognizer) {
+        
+        let state = sender.state
+        if state == UIGestureRecognizerState.Ended {
+            print("long press ended")
+        }
     }
     
     // -------------------------------------- set the default view

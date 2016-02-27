@@ -41,7 +41,13 @@ extension AccountsViewController: UITableViewDelegate {
     // --------------------------------------
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        if let userCount = State.users?.count {
+            print("user count", userCount)
+            return userCount
+        } else {
+            print("no users count")
+            return 0
+        }
     }
     
     // --------------------------------------

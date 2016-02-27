@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 private let CURRENT_USER_KEY: String = "currentUser"
 
@@ -18,7 +19,8 @@ class State: NSObject {
     static var timelineTweets: [Tweet]?
     static var lastBatchCount: Int = 0
     static var currentHomeTweetCount: Int = 0
-
+    
+    static var storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
     
     // -------------------------------------- get and set currentUser of the app
     

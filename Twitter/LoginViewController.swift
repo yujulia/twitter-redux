@@ -12,7 +12,6 @@ import BDBOAuth1Manager
 class LoginViewController: UIViewController {
     
     let client = TwitterClient.sharedInstance
-    let storyBoard = UIStoryboard(name: "Main", bundle: nil)
     var window: UIWindow?
     
     // --------------------------------------

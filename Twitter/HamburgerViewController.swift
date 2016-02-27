@@ -79,8 +79,7 @@ class HamburgerViewController: UIViewController {
     // -------------------------------------- attach menu view controller to hamburger
     
     private func setupMenu() {
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        let menuViewController = storyBoard.instantiateViewControllerWithIdentifier("MenuView") as! MenuViewController
+        let menuViewController = State.storyBoard.instantiateViewControllerWithIdentifier("MenuView") as! MenuViewController
         menuViewController.hamburgerViewController = self
         self.menuViewController = menuViewController
     }

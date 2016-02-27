@@ -17,7 +17,6 @@ class TweetsViewController: UIViewController, UITableViewDataSource {
     let RESPONSE_LIMIT = 20
     let client = TwitterClient.sharedInstance
     let refreshControl = UIRefreshControl()
-    let storyBoard = UIStoryboard(name: "Main", bundle: nil)
     
     private var loading: Bool = false
     private var hud: MBProgressHUD?
@@ -32,7 +31,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource {
         self.setupTable()
         self.setupRefresh()
         
-        self.profileViewController = storyBoard.instantiateViewControllerWithIdentifier("ProfileViewController") as? ProfileViewController
+        self.profileViewController = State.storyBoard.instantiateViewControllerWithIdentifier("ProfileViewController") as? ProfileViewController
     }
 
     // -------------------------------------- load the timeline

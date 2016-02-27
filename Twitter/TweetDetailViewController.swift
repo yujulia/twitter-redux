@@ -33,8 +33,6 @@ class TweetDetailViewController: UIViewController {
     
     @IBOutlet weak var retweetCount: UILabel!
     @IBOutlet weak var favoriteCount: UILabel!
-    
-    let storyBoard = UIStoryboard(name: "Main", bundle: nil)
 
     weak var delegate: TweetDetailViewControllerDelegate?
     
@@ -51,7 +49,7 @@ class TweetDetailViewController: UIViewController {
         self.scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height)
         self.setDataAsProperty()
         
-        self.profileViewController = storyBoard.instantiateViewControllerWithIdentifier("ProfileViewController") as? ProfileViewController
+        self.profileViewController = State.storyBoard.instantiateViewControllerWithIdentifier("ProfileViewController") as? ProfileViewController
     }
     
     // --------------------------------------

@@ -14,21 +14,20 @@ import BDBOAuth1Manager
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    private let storyBoard = UIStoryboard(name: "Main", bundle: nil)
     
     // --------------------------------------
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         print("app launch")
-//        
-//        if State.currentUser != nil {
-//            print("user already logged in")
-//            self.setRootAsHamburger()
-//        } else {
-//            print("user not logged in")
-//        }
-//        
-//        self.ObserveUserLogout()
+        
+        if State.currentUser != nil {
+            print("user already logged in")
+            self.setRootAsHamburger()
+        } else {
+            print("user not logged in")
+        }
+        
+        self.ObserveUserLogout()
         
         return true
     }
@@ -45,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // --------------------------------------
     
     private func logOutUser() {
-        let LoginViewController = self.storyBoard.instantiateInitialViewController()
+        let LoginViewController = State.storyBoard.instantiateInitialViewController()
         
         UIView.transitionWithView(
             self.window!,
@@ -59,7 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // --------------------------------------
     
     private func setRootAsHamburger() {
-        let hamburgerViewController = self.storyBoard.instantiateViewControllerWithIdentifier("HamburgerView")         
+        let hamburgerViewController = State.storyBoard.instantiateViewControllerWithIdentifier("HamburgerView")
         self.window?.rootViewController = hamburgerViewController
     }
 
