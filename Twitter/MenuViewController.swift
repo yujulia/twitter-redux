@@ -78,8 +78,10 @@ class MenuViewController: UIViewController, UITableViewDataSource {
         }
     }
     
+    // -------------------------------------- menu self image tap
+    
     @IBAction func profileTapped(sender: AnyObject) {
-        // go to profile
+        hamburgerViewController.contentViewController = MenuViewControllers[0]
     }
     
     // -------------------------------------- get vc from storyboard and instantiate
