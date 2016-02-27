@@ -96,14 +96,24 @@ class MenuViewController: UIViewController, UITableViewDataSource {
         MenuViewControllers.append(self.TweetsNavController)
         MenuViewControllers.append(self.ExtraNavController)
         
-        hamburgerViewController.contentViewController = MenuViewControllers[1]
+        self.setDefaultContentViewAs(1)
+        
+    }
     
-        let navController = MenuViewControllers[1] as? UINavigationController
-        let firstChildController = navController!.topViewController as? TweetsViewController
+    // -------------------------------------- set the default view
     
-        self.delegate = firstChildController as? MenuViewControllerDelegate
-  
-        self.delegate?.menuViewController?(self, didSetContentOnHamburger: MenuViewControllers[1], endpoint: self.TimelineEndpoints[1].rawValue)
+    private func setDefaultContentViewAs(index: Int) {
+        
+        hamburgerViewController.contentViewController = MenuViewControllers[index]
+        
+        // if this is a nav controller, set up the delegate on its view controller
+        
+        if let navController = hamburgerViewController.contentViewController as? UINavigationController {
+            let firstChildController = navController.topViewController as? TweetsViewController
+            self.delegate = firstChildController as? MenuViewControllerDelegate
+            self.delegate?.menuViewController?(self, didSetContentOnHamburger: hamburgerViewController.contentViewController, endpoint: self.TimelineEndpoints[index].rawValue)
+        }
+        
     }
 }
 
