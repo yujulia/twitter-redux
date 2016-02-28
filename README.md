@@ -23,11 +23,12 @@ The following **optional** features are implemented:
    - [ ] As the paging view moves, increase the opacity of the background screen. See the actual Twitter app for this effect
    - [ ] Pulling down the profile page should blur and resize the header image.
 
-- [ ] Account switching
+- [x] Account switching
    - [x] Long press on tab bar to bring up Account view with animation
-   - [x] Tap account to switch to - DID NOT INTEGRATE ACCESS TOKEN YET TO /refresh feed
+   - [x] Tap account to switch to
    - [x] Include a plus button to Add an Account
-   - [ ] Swipe to delete an account
+   - [x] Swipe to delete an account
+   - *** NOTE *** this just switches the user profile but doesn't update the feed
 
 The following **additional** features are implemented:
 
