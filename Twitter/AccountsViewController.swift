@@ -10,20 +10,28 @@ import UIKit
 
 private let ESTIMATE_ROW_HEIGHT: CGFloat = 60
 
+@objc protocol AccountsViewControllerDelegate {
+    optional func accountsViewController(accountsViewController: AccountsViewController, didChangeUser value: User)
+}
+
 class AccountsViewController: UIViewController, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
     
+    weak var hamburgerViewController: HamburgerViewController?
+    weak var delegate: AccountsViewControllerDelegate?
+    
+    // --------------------------------------
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupTable()
     }
     
+    // --------------------------------------
+    
     @IBAction func onAddAccount(sender: UIButton) {
-        
         TwitterClient.sharedInstance.logout()
-
     }
 }
 
@@ -61,8 +69,15 @@ extension AccountsViewController: UITableViewDelegate {
     // --------------------------------------
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        State.currentUser = State.users[indexPath.row]
-        let hamburgerViewController = State.storyBoard.instantiateViewControllerWithIdentifier("HamburgerView")
-        State.window?.rootViewController = hamburgerViewController
+        
+        let newUser = State.users[indexPath.row]
+        print("new user is ", newUser.screenName)
+        State.currentUser = newUser
+        print("current user is", State.currentUser?.screenName, indexPath.row)
+        self.hamburgerViewController?.dismissAccounts()
+//        self.hamburgerViewController?.dismissViewControllerAnimated(true, completion: nil)
+//        self.dismissViewControllerAnimated(true, completion: nil)
+   
+
     }
 }

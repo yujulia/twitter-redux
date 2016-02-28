@@ -30,15 +30,19 @@ class State: NSObject {
     
     class func addUser(newUser: User) {
         
+        var flag = true
         for existingUser in self.users {
             // we already added this user
             if newUser.screenName == existingUser.screenName {
-                return
+                flag = false
             }
         }
         
-        self.users.append(newUser)
-        self.storeUsers()
+        if flag {
+            self.users.append(newUser)
+            self.storeUsers()
+        }
+
     }
     
     // -------------------------------------- copy current users to userdefaults
@@ -67,10 +71,11 @@ class State: NSObject {
             for existingUser in usersArray {
                 let userObj = User(userData: existingUser as! NSDictionary)
                 self.users.append(userObj)
+                print("got from user store", userObj.screenName)
             }
         }
         
-        print("got from user store", self.users)
+        print("got from user store", self.users.count)
         
     }
     
@@ -110,6 +115,7 @@ class State: NSObject {
             if let user = user {
                 let userDataJSON = try! NSJSONSerialization.dataWithJSONObject(user.userData!, options: [])
                 self.store.setObject(userDataJSON, forKey: CURRENT_USER_KEY)
+                self._currentUser = user
             } else {
                 self.store.setObject(nil, forKey: CURRENT_USER_KEY)
             }

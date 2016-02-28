@@ -8,10 +8,6 @@
 
 import UIKit
 
-//@objc protocol HamburgerViewControllerDelegate {
-//    optional func hamburgerViewController(hamburgerViewController: HamburgerViewController, didSetEndpoint value: Int)
-//}
-
 class HamburgerViewController: UIViewController {
     
     @IBOutlet weak var contentLead: NSLayoutConstraint!
@@ -22,9 +18,7 @@ class HamburgerViewController: UIViewController {
     private var open: Bool = false
     private var accountsViewController: AccountsViewController!
     
-//    var delegate: HamburgerViewControllerDelegate?
-    
-    var menuViewController: UIViewController! {
+    var menuViewController: MenuViewController! {
         didSet(oldMenuViewController) {
             
             self.view.layoutIfNeeded()
@@ -71,6 +65,7 @@ class HamburgerViewController: UIViewController {
         self.setupMenu()
         
         self.accountsViewController = State.storyBoard.instantiateViewControllerWithIdentifier("AccountsViewController") as! AccountsViewController
+        self.accountsViewController.hamburgerViewController = self
     }
     
     // -------------------------------------- attach menu view controller to hamburger
@@ -117,17 +112,23 @@ class HamburgerViewController: UIViewController {
     // --------------------------------------
     
     func presentAccounts() {
+        self.presentViewController(self.accountsViewController, animated: true, completion: nil)
         
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let window = appDelegate.window!
-        
-        UIView.transitionWithView(
-            window,
-            duration: 0.5,
-            options: UIViewAnimationOptions.TransitionFlipFromLeft,
-            animations: { () -> Void in
-                window.rootViewController = self.accountsViewController
-            }, completion: nil)
+//        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//        let window = appDelegate.window!
+//        
+//        UIView.transitionWithView(
+//            window,
+//            duration: 0.5,
+//            options: UIViewAnimationOptions.TransitionFlipFromLeft,
+//            animations: { () -> Void in
+//                window.rootViewController = self.accountsViewController
+//            }, completion: nil)
+    }
+    
+    func dismissAccounts() {
+        self.dismissViewControllerAnimated(true, completion: nil)
+        self.menuViewController.setupProfile()
     }
     
     // --------------------------------------

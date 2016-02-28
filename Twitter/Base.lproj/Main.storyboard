@@ -84,8 +84,8 @@
                                     <action selector="onAddAccount:" destination="bKA-06-udX" eventType="touchUpInside" id="96z-tV-qoD"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="96" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="O4d-Yy-AJf">
-                                <rect key="frame" x="0.0" y="76" width="320" height="340"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="96" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="O4d-Yy-AJf">
+                                <rect key="frame" x="0.0" y="120" width="320" height="340"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="340" id="kpu-uy-rNp"/>
@@ -136,6 +136,7 @@
                             <constraint firstItem="f7a-yD-P1t" firstAttribute="top" secondItem="ZKZ-wj-S00" secondAttribute="bottom" constant="20" id="KUg-YJ-sEc"/>
                             <constraint firstAttribute="trailing" secondItem="O4d-Yy-AJf" secondAttribute="trailing" id="KtC-WE-7Uh"/>
                             <constraint firstItem="O4d-Yy-AJf" firstAttribute="leading" secondItem="klV-BT-TWO" secondAttribute="leading" id="XxJ-JJ-F5w"/>
+                            <constraint firstItem="O4d-Yy-AJf" firstAttribute="top" secondItem="2dT-Nr-Ca7" secondAttribute="bottom" constant="100" id="Y6K-2f-kaF"/>
                             <constraint firstItem="ZKZ-wj-S00" firstAttribute="centerX" secondItem="klV-BT-TWO" secondAttribute="centerX" id="v9W-Wi-GrP"/>
                         </constraints>
                     </view>

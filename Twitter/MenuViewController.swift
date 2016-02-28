@@ -58,7 +58,7 @@ class MenuViewController: UIViewController, UITableViewDataSource {
     
     // --------------------------------------
     
-    private func setupProfile() {
+    func setupProfile() {
         
         if let user = State.currentUser {
             
@@ -168,6 +168,15 @@ extension MenuViewController: UITableViewDelegate {
         
         self.hamburgerViewController.contentViewController = selectedController
         self.delegate?.menuViewController?(self, didSetContentOnHamburger: selectedController, endpoint: self.TimelineEndpoints[indexPath.row].rawValue)
+    }
+}
+
+extension MenuViewController: AccountsViewControllerDelegate {
+    
+    func accountsViewController(accountsViewController: AccountsViewController, didChangeUser value: User) {
+        print("got event user changed")
+        self.setupProfile()
+        self.setDefaultContentViewAs(0)
     }
     
 }
