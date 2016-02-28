@@ -23,21 +23,7 @@ class AccountsViewController: UIViewController, UITableViewDataSource {
     @IBAction func onAddAccount(sender: UIButton) {
         
         TwitterClient.sharedInstance.logout()
-        
-//        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-//        let window = appDelegate.window!
-//        
-//        let LoginViewController = State.storyBoard.instantiateInitialViewController()
-//        
-//        
-//        
-//        UIView.transitionWithView(
-//            window,
-//            duration: 0.5,
-//            options: UIViewAnimationOptions.TransitionFlipFromLeft,
-//            animations: { () -> Void in
-//                window.rootViewController = LoginViewController
-//            }, completion: nil)
+
     }
 }
 
@@ -67,7 +53,6 @@ extension AccountsViewController: UITableViewDelegate {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("AccountCell", forIndexPath: indexPath) as! AccountCell
         cell.user = State.users[indexPath.row]
-
         cell.backgroundColor = UIColor.clearColor()
         
         return cell
@@ -76,9 +61,8 @@ extension AccountsViewController: UITableViewDelegate {
     // --------------------------------------
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print("row selected")
-        self.dismissViewControllerAnimated(true, completion: nil)
+        State.currentUser = State.users[indexPath.row]
+        let hamburgerViewController = State.storyBoard.instantiateViewControllerWithIdentifier("HamburgerView")
+        State.window?.rootViewController = hamburgerViewController
     }
-    
-    
 }

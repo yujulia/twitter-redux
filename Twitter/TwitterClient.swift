@@ -91,9 +91,7 @@ class TwitterClient: BDBOAuth1SessionManager {
                         { (user: User) -> () in
                             print("client got credentials")
                             State.currentUser = user
-                            State.users.append(user)
-                            State.storeUsers()
-                            print("adding a user", State.users)
+                            State.addUser(user)
                             self.loginSuccess?("ok")
                         },
                         failure: { (error: NSError) -> () in

@@ -26,6 +26,21 @@ class State: NSObject {
     static var storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
     static var store = NSUserDefaults.standardUserDefaults()
     
+    // -------------------------------------- add a new user if we havent seen them before
+    
+    class func addUser(newUser: User) {
+        
+        for existingUser in self.users {
+            // we already added this user
+            if newUser.screenName == existingUser.screenName {
+                return
+            }
+        }
+        
+        self.users.append(newUser)
+        self.storeUsers()
+    }
+    
     // -------------------------------------- copy current users to userdefaults
     
     class func storeUsers() {
@@ -57,6 +72,14 @@ class State: NSObject {
         
         print("got from user store", self.users)
         
+    }
+    
+    class var window: UIWindow? {
+        get {
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            let window = appDelegate.window!
+            return window
+        }
     }
     
     // -------------------------------------- get and set currentUser of the app

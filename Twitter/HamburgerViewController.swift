@@ -47,6 +47,8 @@ class HamburgerViewController: UIViewController {
             
             self.view.layoutIfNeeded()
             
+            print("reloading content view")
+            
             if oldContentViewController != nil {
                 oldContentViewController.willMoveToParentViewController(nil)
                 oldContentViewController.view.removeFromSuperview()
