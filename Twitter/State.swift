@@ -71,12 +71,20 @@ class State: NSObject {
             for existingUser in usersArray {
                 let userObj = User(userData: existingUser as! NSDictionary)
                 self.users.append(userObj)
-                print("got from user store", userObj.screenName)
             }
         }
         
         print("got from user store", self.users.count)
         
+    }
+    
+    // -------------------------------------- remove a user
+    
+    class func removeUserAt(row: Int) {
+        self.users.removeAtIndex(row)
+        self.storeUsers()
+        
+        // should probably log them out as well?
     }
     
     class var window: UIWindow? {

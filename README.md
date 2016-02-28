@@ -18,10 +18,11 @@ The following **required** functionality is completed:
 
 The following **optional** features are implemented:
 
-- [ ] Profile Page
+- [ ] Profile Page - this is totally outdated... we can not see the demo of what we need to do
    - [ ] Implement the paging view for the user description.
    - [ ] As the paging view moves, increase the opacity of the background screen. See the actual Twitter app for this effect
    - [ ] Pulling down the profile page should blur and resize the header image.
+
 - [ ] Account switching
    - [x] Long press on tab bar to bring up Account view with animation
    - [x] Tap account to switch to - DID NOT INTEGRATE ACCESS TOKEN YET TO /refresh feed

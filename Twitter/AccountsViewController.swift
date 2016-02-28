@@ -55,6 +55,17 @@ extension AccountsViewController: UITableViewDelegate {
         return State.users.count
     }
     
+    func onCellSwipe(sender: UISwipeGestureRecognizer) {
+        let state = sender.state
+
+        if state == UIGestureRecognizerState.Ended {
+            if let indexPath = tableView.indexPathForCell(sender.view as! UITableViewCell) {
+                State.removeUserAt(indexPath.row)
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
     // --------------------------------------
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -62,6 +73,10 @@ extension AccountsViewController: UITableViewDelegate {
         let cell = tableView.dequeueReusableCellWithIdentifier("AccountCell", forIndexPath: indexPath) as! AccountCell
         cell.user = State.users[indexPath.row]
         cell.backgroundColor = UIColor.clearColor()
+        
+        let swipeGesture = UISwipeGestureRecognizer(target: self, action: "onCellSwipe:")
+        cell.addGestureRecognizer(swipeGesture)
+        
         
         return cell
     }
@@ -75,9 +90,5 @@ extension AccountsViewController: UITableViewDelegate {
         State.currentUser = newUser
         print("current user is", State.currentUser?.screenName, indexPath.row)
         self.hamburgerViewController?.dismissAccounts()
-//        self.hamburgerViewController?.dismissViewControllerAnimated(true, completion: nil)
-//        self.dismissViewControllerAnimated(true, completion: nil)
-   
-
     }
 }

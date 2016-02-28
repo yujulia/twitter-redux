@@ -8,6 +8,7 @@
 
 import UIKit
 import BDBOAuth1Manager
+import KeychainSwift
 
 let LOGOUT_EVENT = "UserDidLogout"
 
@@ -37,6 +38,8 @@ class TwitterClient: BDBOAuth1SessionManager {
         consumerSecret: CONSUMER_SECRET
     )
     
+    let keychain = KeychainSwift()
+    
     var loginSuccess: ((String) -> ())?
     var loginFailure: ((NSError) -> ())?
     
@@ -64,6 +67,7 @@ class TwitterClient: BDBOAuth1SessionManager {
             scope: nil,
             success: { (requestToken: BDBOAuth1Credential!) -> Void in
                 print("client login got request token")
+
                 let authString = AUTH_URL + requestToken.token
                 if let authURL = NSURL(string: authString) {
                     UIApplication.sharedApplication().openURL(authURL)
@@ -85,14 +89,18 @@ class TwitterClient: BDBOAuth1SessionManager {
                 requestToken: requestToken,
                 success: { (credentials: BDBOAuth1Credential!) -> Void in
                     
-                    print("client got access token")
-                    
                     self.verifyCredentials(
                         { (user: User) -> () in
                             print("client got credentials")
                             State.currentUser = user
                             State.addUser(user)
                             self.loginSuccess?("ok")
+                            
+                            if let screenName = user.screenName {
+                                self.keychain.set(credentials.token, forKey: screenName)
+                            } else {
+                                print("unable to store user credentials to keychain for because they have no screenname")
+                            }
                         },
                         failure: { (error: NSError) -> () in
                             print("client failed to get credentials")
