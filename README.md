@@ -23,9 +23,9 @@ The following **optional** features are implemented:
    - [ ] As the paging view moves, increase the opacity of the background screen. See the actual Twitter app for this effect
    - [ ] Pulling down the profile page should blur and resize the header image.
 - [ ] Account switching
-   - [ ] Long press on tab bar to bring up Account view with animation
-   - [ ] Tap account to switch to
-   - [ ] Include a plus button to Add an Account
+   - [x] Long press on tab bar to bring up Account view with animation
+   - [x] Tap account to switch to - DID NOT INTEGRATE ACCESS TOKEN YET TO /refresh feed
+   - [x] Include a plus button to Add an Account
    - [ ] Swipe to delete an account
 
 The following **additional** features are implemented:
@@ -37,6 +37,7 @@ The following **additional** features are implemented:
 Here's a walkthrough of implemented user stories:
 
 ![twitter redux demo](twitterRedux.gif)
+![twitter redux demo](twitter-accounts.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
